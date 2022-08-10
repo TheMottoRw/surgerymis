@@ -20,11 +20,11 @@ public class PharmacyController {
     @Autowired
     UsersRepository usersRepository;
 
-    @RequestMapping("/pharmacy")
+    @RequestMapping("/api/pharmacy")
     public List<Pharmacy> getAllPharmacy(){
         return pharmacyService.getAllPharmacy();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/pharmacy")
+    @RequestMapping(method = RequestMethod.POST,value = "/api/pharmacy")
     public void addPharmacy(@RequestBody Pharmacy pharmacy, @RequestParam String representedBy){
         pharmacy.setCreatedAt(new Date());
         Users user = usersRepository.findById(Integer.parseInt(representedBy)).get();

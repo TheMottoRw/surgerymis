@@ -28,12 +28,12 @@ public class AnesthesiaController {
     @Autowired
     UsersRepository usersRepository;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/anesthesia")
+    @RequestMapping(method = RequestMethod.GET, value = "/api/anesthesia")
     public List<Anesthesia> getAllAnesthesia() {
         return anesthesiaService.getAllAnesthesia();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/anesthesia")
+    @RequestMapping(method = RequestMethod.POST, value = "/api/anesthesia")
     public void addAnesthesia(@RequestBody Anesthesia anesthesia, @RequestParam String patient, @RequestParam String operation, @RequestParam String anesthesiologist, @RequestParam String anesthetist) {
         anesthesia.setCreatedAt(new Date());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();

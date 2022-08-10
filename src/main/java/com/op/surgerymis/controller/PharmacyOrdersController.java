@@ -27,11 +27,11 @@ public class PharmacyOrdersController {
     @Autowired
     PharmacyRepository pharmacyRepository;
 
-    @RequestMapping("/orders")
+    @RequestMapping("/api/orders")
     public List<PharmacyOrders> getAllPharmacy(){
         return ordersService.getAllOrders();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/order")
+    @RequestMapping(method = RequestMethod.POST,value = "/api/order")
     public void addPharmacy(@RequestBody PharmacyOrders orders, @RequestParam String patient,@RequestParam String pharmacy){
         orders.setCreatedAt(new Date());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();

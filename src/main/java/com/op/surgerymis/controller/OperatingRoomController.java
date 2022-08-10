@@ -26,11 +26,11 @@ public class OperatingRoomController {
     UsersRepository usersRepository;
 
 
-    @RequestMapping(method = RequestMethod.GET,value = "/oprooms")
+    @RequestMapping(method = RequestMethod.GET,value = "/api/oprooms")
     public List<OperatingRoom> getAllOperatingRooms(){
         return operatingRoomService.getAllOperatingRoom();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/oproom")
+    @RequestMapping(method = RequestMethod.POST,value = "/api/oproom")
     public void addOperatingRoom(@RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String assistant,@RequestParam String nurse){
         System.out.println(operatingRoom.getCleaning());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();

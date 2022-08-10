@@ -20,6 +20,11 @@ public class UserService {
         usersRepository.findAll().forEach(users::add);
         return users;
     }
+    public List<Users> getUserByType(String userType) {
+        List<Users> users = new ArrayList<>();
+        users = usersRepository.findByUserType(userType);
+        return users;
+    }
     public void addUser(Users user){
         user.setCreatedAt(new Date());
         usersRepository.save(user);

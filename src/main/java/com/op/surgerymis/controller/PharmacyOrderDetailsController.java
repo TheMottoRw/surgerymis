@@ -21,11 +21,11 @@ public class PharmacyOrderDetailsController {
     @Autowired
     PharmacyOrdersRepository pharmacyOrdersRepository;
 
-    @RequestMapping(method = RequestMethod.GET,value = "/details")
+    @RequestMapping(method = RequestMethod.GET,value = "/api/details")
     public List<PharmacyOrderDetails> getAllPharmacyOrderDetails(){
         return orderDetailsService.getAllPharmacyOrderDetails();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/detail")
+    @RequestMapping(method = RequestMethod.POST,value = "/api/detail")
     public void addPharmacyOrderDetails(@RequestBody PharmacyOrderDetails details, @RequestParam String order){
         System.out.println(details.getKit());
         PharmacyOrders orders = pharmacyOrdersRepository.findById(Integer.parseInt(order)).get();

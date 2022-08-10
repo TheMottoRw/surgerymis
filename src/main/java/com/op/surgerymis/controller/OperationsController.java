@@ -18,11 +18,16 @@ public class OperationsController {
     @Autowired
     PatientsRepository patientsRepository;
 
-    @RequestMapping("/operations")
+    @RequestMapping("/api/operations")
     public List<Operations> getAllOperations(){
         return operationsService.getAllOperations();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/operation")
+
+    @RequestMapping("/api/operations/bypatient")
+    public List<Operations> getOperationsByPatient(@RequestParam String patient){
+        return operationsService.getOperationsByPatient(patient);
+    }
+    @RequestMapping(method = RequestMethod.POST,value = "/api/operation")
     public void addOperations(@RequestBody Operations operations, @RequestParam String patient){
         System.out.println(operations.getCaution());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
