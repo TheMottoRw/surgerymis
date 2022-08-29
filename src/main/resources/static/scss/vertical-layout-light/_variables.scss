@@ -3,7 +3,8 @@ $sidebar-width-lg: 220px;
 $sidebar-width-mini: 145px; 
 $sidebar-width-icon: 70px;
 
-$sidebar-light-bg: #F4F5F7;
+//$sidebar-light-bg: #F4F5F7;
+$sidebar-light-bg: #FFF;
 $sidebar-light-menu-color: #484848;
 $sidebar-light-submenu-color: $sidebar-light-menu-color;
 $sidebar-light-menu-active-bg: #fff;
@@ -80,7 +81,8 @@ $boxed-layout-bg: #c6c8ca;
 $settings-panel-width: 300px;
 
 ///////// NAVBAR ////////
-$navbar-default-bg: #F4F5F7;
+//$navbar-default-bg: #F4F5F7;
+$navbar-default-bg: #FFF;
 $navbar-height: 97px;
 $navbar-menu-color: #6C7383;
 $navbar-font-size: $sidebar-menu-font-size;

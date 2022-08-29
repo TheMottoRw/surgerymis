@@ -33,6 +33,8 @@ public class OperatingRoom {
     @ManyToOne
     private Operations operation;
     @ManyToOne
+    private Users surgeon;
+    @ManyToOne
     private Users assistant;
     @ManyToOne
     private Users nurse;
@@ -208,6 +210,15 @@ public class OperatingRoom {
 
     public void setAssistant(Users assistant) {
         this.assistant = assistant;
+    }
+
+
+    public Users getSurgeon() {
+        return surgeon;
+    }
+
+    public void setSurgeon(Users surgeon) {
+        this.surgeon = surgeon;
     }
 
     public Users getNurse() {

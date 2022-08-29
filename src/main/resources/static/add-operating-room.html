@@ -35,7 +35,8 @@
             </div>
             <div>
                 <a class="navbar-brand brand-logo" href="index.html">
-                    <img src="images/logo.svg" alt="logo" />
+                    <h4><img src="images/surgerymis-logo.png" alt="logo" class="img img-thumbnail"/>
+                        <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
                     <img src="images/logo-mini.svg" alt="logo" />
@@ -45,26 +46,8 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                    <h1 class="welcome-text">Good morning, <span class="text-black fw-bold">Channy Inema</span></h1>
+                    <h1 class="welcome-text">Hello, <span class="text-black fw-bold">Channy Inema</span></h1>
                     <h3 class="welcome-sub-text">Pre and Post surgery Management information system</h3>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                        <div class="dropdown-header text-center">
-                            <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                            <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-                        </div>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-                    </div>
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
@@ -92,7 +75,7 @@
             <ul class="nav">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="dashboard.html">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -153,18 +136,18 @@
 
 
                 <li class="nav-item nav-category">Forms and Data</li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                        <i class="menu-icon mdi mdi-card-text-outline"></i>
-                        <span class="menu-title">Form elements</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="form-elements">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-                        </ul>
-                    </div>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">-->
+<!--                        <i class="menu-icon mdi mdi-card-text-outline"></i>-->
+<!--                        <span class="menu-title">Form elements</span>-->
+<!--                        <i class="menu-arrow"></i>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="form-elements">-->
+<!--                        <ul class="nav flex-column sub-menu">-->
+<!--                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
 
                 <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
             </ul>
@@ -182,28 +165,35 @@
                                     Record operating room information
                                 </p>
                                 <form class="forms-sample">
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something went
+                                        wrong,can't add operating room details
+                                    </div>
+                                    <div id="response_success" class="alert alert-success" style="display: none">Operating room details added
+                                        successful
+                                    </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
                                         <select  class="form-control" id="patient">
-                                            <option>Admin</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="operation">Operation</label>
                                         <select  class="form-control" id="operation">
-                                            <option>Operation</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="surgeon">Surgeon</label>
+                                        <select  class="form-control" id="surgeon">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="nurse">Nurse</label>
                                         <select  class="form-control" id="nurse">
-                                            <option>Nurse</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="assistant">Assistant</label>
                                         <select  class="form-control" id="assistant">
-                                            <option>Assistant</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -224,7 +214,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="entrance">Entrance</label>
-                                        <input type="date" class="form-control" id="entrance">
+                                        <input type="text" class="form-control" id="entrance">
 
                                     </div>
                                     <div class="form-group">
@@ -264,7 +254,7 @@
                                         <label for="observation">Observation</label>
                                         <input type="text" class="form-control" id="observation">
                                     </div>
-                                    <button type="button" id="btnAddOperation" class="btn btn-primary me-2">Register</button>
+                                    <button type="button" id="btnAddOperatingRoom" class="btn btn-primary me-2">Register</button>
                                     <a href="operating-room.html" class="btn btn-danger">Cancel</a>
                                 </form>
                             </div>
@@ -309,6 +299,163 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <!-- End custom js for this page-->
+<script>
+    function saveOperatingRoom() {
+        const patient = $("#patient").val(),
+              operation = $("#operation").val(),
+              surgeon = $("#surgeon").val(),
+              nurse = $("#nurse").val(),
+              assistant = $("#assistant").val();
+        const data = JSON.stringify({
+            intraOpDiagnosis: $("#intraOpDiagnosis").val(),
+            opProcedure: $("#opProcedure").val(),
+            emergency: $("#emergency").val(),
+            entrance: $("#entrance").val(),
+            induction: $("#induction").val(),
+            incision: $("#incision").val(),
+            dressing: $("#dressing").val(),
+            out_: $("#out").val(),
+            cleaning: $("#cleaning").val(),
+            major: $("#major").val(),
+            intermediate: $("#intermediate").val(),
+            minor: $("#minor").val(),
+            observation: $("#observation").val()
+        });
+        $.ajax({
+            url: `api/oproom?patient=${patient}&operation=${operation}&surgeon=${surgeon}&nurse=${nurse}&assistant=${assistant}`,
+            method: 'POST',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result,textStatus,xhr) {
+            console.log(xhr.status);
+            if (xhr.status === 200) {
+                $("#response_success").show();
+                $("#response_error").hide();
+                $("#intraOpDiagnosis").val("");
+                $("#opProcedure").val("");
+                $("#emergency").val("");
+                $("#entrance").val("");
+                $("#induction").val("");
+                $("#incision").val("");
+                $("#dressing").val("");
+                $("#out").val("");
+                $("#cleaning").val("");
+                $("#major").val("");
+                $("#intermediate").val("");
+                $("#minor").val("");
+                $("#observation").val("");
+            } else {
+                $("#response_success").hide();
+                $("#response_error").show();
+            }
+
+            setTimeout(function () {
+                $("#response_error").hide();
+                $("#response_success").hide();
+            }, 7000);
+        }).fail(function(xhr,status){
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+        });
+
+    }
+
+    function loadPatient() {
+        $.ajax({
+            url: "api/patients",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].patientNames}</option>`;
+                }
+                $("#patient").html(data)
+            }
+        })
+    }
+
+    function loadSurgeon() {
+        $.ajax({
+            url: "api/users/find?userType=Surgeon",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#surgeon").html(data)
+            }
+        })
+    }
+    function loadNurses() {
+        $.ajax({
+            url: "api/users/find?userType=Nurse",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#nurse").html(data)
+            }
+        })
+    }
+    function loadAssistant() {
+        $.ajax({
+            url: "api/users/find?userType=Assistant",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#assistant").html(data)
+            }
+        })
+    }
+    function loadOperationByPatient(patient) {
+        $.ajax({
+            url: `api/operations/bypatient?patient=${patient}`,
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].plannedProcedure}</option>`;
+                }
+                $("#operation").html(data)
+            }
+        })
+    }
+
+    $("#btnAddOperatingRoom").click(function () {
+        saveOperatingRoom();
+    });
+    loadPatient();
+    loadSurgeon();
+    loadNurses();
+    loadAssistant();
+    $("#patient").change(function(){
+        loadOperationByPatient($(this).val());
+    })
+</script>
 </body>
 
 </html>

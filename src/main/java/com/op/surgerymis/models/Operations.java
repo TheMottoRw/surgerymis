@@ -13,7 +13,6 @@ public class Operations {
     private String districtHospital;
     private String preOpDiagnostic;
     private String plannedProcedure;
-    private String caution;
     private String assurance;
     private String accompanying;
     private String provenance;
@@ -63,14 +62,6 @@ public class Operations {
 
     public void setPlannedProcedure(String plannedProcedure) {
         this.plannedProcedure = plannedProcedure;
-    }
-
-    public String getCaution() {
-        return caution;
-    }
-
-    public void setCaution(String caution) {
-        this.caution = caution;
     }
 
     public String getAssurance() {

@@ -13,8 +13,6 @@ public class Anesthesia {
     private int id;
     private String asa;
     private String anesthesiaType;
-    private String anesthesiaDrugs;
-    private String opiods;
     private String operativeDuration;
     private String anesthesiaDuration;
     private Boolean postOpDisposition;
@@ -59,22 +57,6 @@ public class Anesthesia {
 
     public void setAnesthesiaType(String anesthesiaType) {
         this.anesthesiaType = anesthesiaType;
-    }
-
-    public String getAnesthesiaDrugs() {
-        return anesthesiaDrugs;
-    }
-
-    public void setAnesthesiaDrugs(String anesthesiaDrugs) {
-        this.anesthesiaDrugs = anesthesiaDrugs;
-    }
-
-    public String getOpiods() {
-        return opiods;
-    }
-
-    public void setOpiods(String opiods) {
-        this.opiods = opiods;
     }
 
     public String getOperativeDuration() {

@@ -1,9 +1,11 @@
 package com.op.surgerymis.controller;
 
+import com.op.surgerymis.dto.DashboardDTO;
 import com.op.surgerymis.models.Operations;
 import com.op.surgerymis.models.Patients;
 import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.PatientsRepository;
+import com.op.surgerymis.service.DashboardService;
 import com.op.surgerymis.service.OperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import java.util.List;
 public class OperationsController {
     @Autowired
     OperationsService operationsService;
+    @Autowired
+    DashboardService dashboardService;
     @Autowired
     PatientsRepository patientsRepository;
 
@@ -29,10 +33,14 @@ public class OperationsController {
     }
     @RequestMapping(method = RequestMethod.POST,value = "/api/operation")
     public void addOperations(@RequestBody Operations operations, @RequestParam String patient){
-        System.out.println(operations.getCaution());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
         operations.setPatient(patients);
         operations.setCreatedAt(new Date());
         operationsService.addOperation(operations);
+    }
+
+    @RequestMapping("/api/dashboard")
+    public DashboardDTO getDashboardStat(){
+        return dashboardService.getDashboardStats();
     }
 }

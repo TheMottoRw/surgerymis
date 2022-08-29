@@ -31,14 +31,16 @@ public class OperatingRoomController {
         return operatingRoomService.getAllOperatingRoom();
     }
     @RequestMapping(method = RequestMethod.POST,value = "/api/oproom")
-    public void addOperatingRoom(@RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String assistant,@RequestParam String nurse){
+    public void addOperatingRoom(@RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String surgeon,@RequestParam String assistant,@RequestParam String nurse){
         System.out.println(operatingRoom.getCleaning());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
         Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
+        Users surgeons = usersRepository.findById(Integer.parseInt(surgeon)).get();
         Users assistants = usersRepository.findById(Integer.parseInt(assistant)).get();
         Users nurses = usersRepository.findById(Integer.parseInt(nurse)).get();
         operatingRoom.setPatient(patients);
         operatingRoom.setOperation(operations);
+        operatingRoom.setSurgeon(surgeons);
         operatingRoom.setAssistant(assistants);
         operatingRoom.setNurse(nurses);
         operatingRoom.setCreatedAt(new Date());

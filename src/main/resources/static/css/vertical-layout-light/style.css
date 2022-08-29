@@ -8690,7 +8690,8 @@
   --bs-dark-rgb: 33, 37, 41;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-body-color-rgb: 31, 31, 31;
+  --bs-body-color-rgb: 255, 255, 255;
+  /*--bs-body-color-rgb: 31, 31, 31;*/
   --bs-body-bg-rgb: 255, 255, 255;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -16740,7 +16741,8 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .text-muted, .preview-list .preview-item .preview-item-content p .content-category, .email-wrapper .mail-sidebar .menu-bar .profile-list-item a .user .u-designation, .email-wrapper .mail-list-container .mail-list .content .message_text, .email-wrapper .mail-list-container .mail-list .details .date {
   --bs-text-opacity: 1;
-  color: #737F8B !important;
+  /*color: #737F8B !important;*/
+  color: black !important;
 }
 
 .text-black-50 {
@@ -20050,7 +20052,8 @@ code {
 
 /* Footer */
 .footer {
-  background: #F4F5F7;
+  /*background: #F4F5F7;*/
+  background: #FFF;
   color: color(dark);
   padding: 30px 2.45rem;
   transition: all 0.25s ease;
@@ -20179,7 +20182,8 @@ code {
 }
 
 .text-gray, .card .card-subtitle {
-  color: #8c8c8c;
+  /*color: #8c8c8c;*/
+  color: black;
 }
 
 .text-black {
@@ -20363,7 +20367,8 @@ code {
   padding-top: 16px;
   padding-bottom: 16px;
   z-index: 10;
-  background: #F4F5F7;
+  /*background: #F4F5F7;*/
+  background: #FFF;
 }
 
 .doc-content {
@@ -20732,7 +20737,8 @@ code {
   font-weight: 500;
   font-size: 13px;
   line-height: 18px;
-  color: #8D8D8D;
+  /*color: #8D8D8D;*/
+  color: black;
   margin-bottom: 4px;
 }
 
@@ -25586,7 +25592,8 @@ dl li {
 }
 
 .table.select-table th {
-  color: #A3A3A3;
+  /*color: #A3A3A3;*/
+  color: black;
   font-style: normal;
   font-weight: bold;
   font-size: 11px;
@@ -28891,7 +28898,8 @@ div.tagsinput span.tag a {
 }
 
 .content-wrapper {
-  background: #F4F5F7;
+  /*background: #F4F5F7;*/
+  background: #FFF;
   padding: 1.5rem 2.187rem 1.5rem 3.5rem;
   width: 100%;
   -webkit-flex-grow: 1;
@@ -28907,7 +28915,7 @@ div.tagsinput span.tag a {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 97px);
-  background: #F4F5F7;
+  background: #FFF;
   font-family: "Manrope", sans-serif;
   font-weight: 500;
   padding: 0;
@@ -28946,7 +28954,8 @@ div.tagsinput span.tag a {
   align-items: center;
   white-space: nowrap;
   padding: 10px 35px 10px 35px;
-  color: #484848;
+  /*color: #484848;*/
+  color: black;
   border-radius: 0px 20px 20px 0px;
   -webkit-transition-duration: 0.45s;
   -moz-transition-duration: 0.45s;
@@ -29279,7 +29288,8 @@ div.tagsinput span.tag a {
   -moz-transition: background 0.25s ease;
   -ms-transition: background 0.25s ease;
   box-shadow: none;
-  background: #F4F5F7;
+  background: #FFF;
+  /*background: #F4F5F7;*/
   /* Navbar color variations */
 }
 
@@ -29288,7 +29298,8 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper {
-  background: #F4F5F7;
+  /*background: #F4F5F7;*/
+  background: #FFF;
   transition: width 0.25s ease, background 0.25s ease;
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
@@ -29304,7 +29315,8 @@ div.tagsinput span.tag a {
 
 @media (max-width: 991px) {
   .sidebar-dark .navbar .navbar-brand-wrapper {
-    background: #F4F5F7;
+    /*background: #F4F5F7;*/
+    background: #FFF;
   }
 }
 
@@ -29392,7 +29404,8 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-menu-wrapper {
-  background: #F4F5F7;
+  /*background: #F4F5F7;*/
+  background: #FFF;
   transition: width 0.25s ease;
   -webkit-transition: width 0.25s ease;
   -moz-transition: width 0.25s ease;
@@ -29715,7 +29728,8 @@ div.tagsinput span.tag a {
   font-weight: normal;
   font-size: 16px;
   line-height: 22px;
-  color: #8D8D8D;
+  /*color: #8D8D8D;*/
+  color: black;
   margin-bottom: 0;
 }
 

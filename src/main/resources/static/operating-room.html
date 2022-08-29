@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Star Admin2 </title>
+    <title>Surgery MIS </title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
@@ -34,8 +34,9 @@
                 </button>
             </div>
             <div>
-                <a class="navbar-brand brand-logo" href="index.html">
-                    <img src="images/logo.svg" alt="logo" />
+                <a class="navbar-brand brand-logo" href="dashboard.html">
+                    <h4><img src="images/surgerymis-logo.png" alt="logo" class="img img-thumbnail"/>
+                        <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
                     <img src="images/logo-mini.svg" alt="logo" />
@@ -45,26 +46,8 @@
         <div class="navbar-menu-wrapper d-flex align-items-top">
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                    <h1 class="welcome-text">Good morning, <span class="text-black fw-bold">Channy Inema</span></h1>
+                    <h1 class="welcome-text">Hello, <span class="text-black fw-bold">Channy Inema</span></h1>
                     <h3 class="welcome-sub-text">Pre and Post surgery Management information system</h3>
-                </li>
-            </ul>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item dropdown d-none d-lg-block user-dropdown">
-                    <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="img-xs rounded-circle" src="images/faces/face8.jpg" alt="Profile image"> </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
-                        <div class="dropdown-header text-center">
-                            <img class="img-md rounded-circle" src="images/faces/face8.jpg" alt="Profile image">
-                            <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
-                            <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
-                        </div>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-calendar-check-outline text-primary me-2"></i> Activity</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-help-circle-outline text-primary me-2"></i> FAQ</a>
-                        <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
-                    </div>
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
@@ -92,7 +75,7 @@
             <ul class="nav">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">
+                    <a class="nav-link" href="dashboard.html">
                         <i class="mdi mdi-grid-large menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -153,18 +136,18 @@
 
 
                 <li class="nav-item nav-category">Forms and Data</li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                        <i class="menu-icon mdi mdi-card-text-outline"></i>
-                        <span class="menu-title">Form elements</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="form-elements">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>
-                        </ul>
-                    </div>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">-->
+<!--                        <i class="menu-icon mdi mdi-card-text-outline"></i>-->
+<!--                        <span class="menu-title">Form elements</span>-->
+<!--                        <i class="menu-arrow"></i>-->
+<!--                    </a>-->
+<!--                    <div class="collapse" id="form-elements">-->
+<!--                        <ul class="nav flex-column sub-menu">-->
+<!--                            <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Basic Elements</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </li>-->
 
                 <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
             </ul>
@@ -182,8 +165,10 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Patient Name</th>
                                             <th>Operation</th>
+                                            <th>Surgeon</th>
                                             <th>Assistant</th>
                                             <th>Nurse</th>
                                             <th>Intra Op. Diagnostic</th>
@@ -203,101 +188,6 @@
                                         </tr>
                                         </thead>
                                         <tbody id="operating-room-data">
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>Jacob</td>
-                                            <td>53275531</td>
-                                            <td>12 May 2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>Messsy</td>
-                                            <td>53275532</td>
-                                            <td>15 May 2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>John</td>
-                                            <td>53275533</td>
-                                            <td>14 May 2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>Peter</td>
-                                            <td>53275534</td>
-                                            <td>16 May 2017</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>Dave</td>
-                                            <td>53275535</td>
-                                            <td>20 May 2017</td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -342,7 +232,50 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <!-- End custom js for this page-->
-</body>
+<script>
+    $(document).ready(function () {
+        function loadOperatingRooms() {
+            $.ajax({
+                url: "api/oprooms",
+                method: 'GET',
+                data: {},
+                dataType: 'json',
+                success: function (res) {
+                    console.log(`Data len ${res.length}`);
+                    var data = '';
+                    for (var i = 0; i < res.length; i++) {
+                        data += `<tr>
+                                    <td>${i + 1}</td>
+                                    <td>${res[i].patient.patientNames}</td>
+                                    <td>${res[i].operation.plannedProcedure}</td>
+                                    <td>${res[i].surgeon.name}</td>
+                                    <td>${res[i].assistant.name}</td>
+                                    <td>${res[i].nurse.name}</td>
+                                    <td>${res[i].intraOpDiagnosis}</td>
+                                    <td>${res[i].opProcedure}</td>
+                                    <td>${res[i].emergency}</td>
+                                    <td>${res[i].entrance}</td>
+                                    <td>${res[i].induction}</td>
+                                    <td>${res[i].incision}</td>
+                                    <td>${res[i].dressing}</td>
+                                    <td>${res[i].out_}</td>
+                                    <td>${res[i].cleaning}</td>
+                                    <td>${res[i].major}</td>
+                                    <td>${res[i].intermediate}</td>
+                                    <td>${res[i].minor}</td>
+                                    <td>${res[i].observation}</td>
+                                    <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
+                                </tr>`;
+                    }
+                    $("#operating-room-data").html(data)
+                }
+            })
+        }
 
+        loadOperatingRooms();
+    })
+
+</script>
+</body>
 </html>
 
