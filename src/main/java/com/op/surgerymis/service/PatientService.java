@@ -1,11 +1,13 @@
 package com.op.surgerymis.service;
 
+import com.op.surgerymis.helpers.SmsUtils;
 import com.op.surgerymis.models.Patients;
 import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.PatientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,7 +24,15 @@ public class PatientService {
         return patients;
     }
     public void addPatient(Patients patient){
+        SmsUtils smsUtils = new SmsUtils();
         patientsRepository.save(patient);
+        //send sms
+        try {
+            String message = "Hello "+patient.getPatientNames()+",Information recorded successfully.";
+            smsUtils.send(patient.getPhone(),message);
+        }catch (IOException ex){
+            ex.printStackTrace();
+        }
     }
     public void updatePatient(String id, Patients pat){
         patientsRepository.findById(Integer.parseInt(id));

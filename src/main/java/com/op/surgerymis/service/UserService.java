@@ -38,5 +38,13 @@ public class UserService {
         user.setUserType(usr.getUserType());
         usersRepository.save(user);
     }
+    public List<Users> login(String email,String password){
+        List<String> userTypes = new ArrayList<>();
+        userTypes.add("Admin");
+        userTypes.add("Receptionist");
+        userTypes.add("Pharmacist");
+        userTypes.add("Operation manager");
+        return usersRepository.findUsersByEmailAndPasswordAndUserTypeIn(email,password,userTypes);
+    }
 
 }

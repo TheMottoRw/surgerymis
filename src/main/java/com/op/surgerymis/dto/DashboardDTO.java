@@ -1,5 +1,7 @@
 package com.op.surgerymis.dto;
 
+import com.op.surgerymis.models.Operations;
+
 import java.util.List;
 
 public class DashboardDTO {

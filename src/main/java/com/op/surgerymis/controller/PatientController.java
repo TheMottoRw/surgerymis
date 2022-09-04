@@ -1,5 +1,6 @@
 package com.op.surgerymis.controller;
 
+import com.op.surgerymis.helpers.SmsUtils;
 import com.op.surgerymis.models.Patients;
 import com.op.surgerymis.models.Users;
 import com.op.surgerymis.service.PatientService;
@@ -23,6 +24,7 @@ public class PatientController {
         System.out.println(patient.getPatientNames());
         patient.setCreatedAt(new Date());
         patientService.addPatient(patient);
+
     }
 
     @RequestMapping(method = RequestMethod.PUT,value = "/api/patient/{id}")

@@ -2,6 +2,7 @@ package com.op.surgerymis.service;
 
 import com.op.surgerymis.dto.DashboardDTO;
 import com.op.surgerymis.dto.UsersStatsDTO;
+import com.op.surgerymis.helpers.Utils;
 import com.op.surgerymis.models.Operations;
 import com.op.surgerymis.repository.OperationsRepository;
 import com.op.surgerymis.repository.PatientsRepository;
@@ -48,6 +49,7 @@ public class DashboardService {
         dashboardDTO.setTransfers(operationsRepository.findOperationGroupByTransfer());
         dashboardDTO.setUsers(usersStatsDTO);
         dashboardDTO.setOperations(operationsRepository.findOperationGroupByMonth());
+//        dashboardDTO.setOperations(operationsRepository.findOperationsByCreatedAtStartingWith(Utils.getCurrentYear()));
 
         return dashboardDTO;
     }

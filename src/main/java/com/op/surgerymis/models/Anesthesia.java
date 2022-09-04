@@ -1,7 +1,5 @@
 package com.op.surgerymis.models;
 
-import org.apache.catalina.User;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
