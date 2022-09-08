@@ -15,11 +15,11 @@ import java.util.List;
 public interface OperationsRepository extends CrudRepository<Operations, Integer> {
     List<Operations> findOperationsByPatient(Patients id);
 
-    @Query("SELECT new com.op.surgerymis.dto.TransferStatDTO(transfer,count(id)) FROM Operations group by transfer")
+    @Query("SELECT new com.op.surgerymis.dto.TransferStatDTO(districtHospital,count(id)) FROM Operations group by districtHospital")
     List<TransferStatDTO> findOperationGroupByTransfer();
 
     @Query("SELECT new com.op.surgerymis.dto.OperationStatDTO(createdAt ,'1') FROM Operations")
     List<OperationStatDTO> findOperationGroupByMonth();
 
-    List<Operations> findOperationsByCreatedAtStartingWith(String year);
+    List<Operations> findOperationsByCreatedAtIsBetween(String start,String end);
 }

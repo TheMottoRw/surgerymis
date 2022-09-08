@@ -12,16 +12,11 @@ public class OperatingRoom {
     private int id;
     private String intraOpDiagnosis;
     private String opProcedure;
-    private String emergency;
-    private String entrance;
-    private String induction;
-    private String incision;
+    private String emergenceOrEntrance;
     private String dressing;
     private String out_;
     private String cleaning;
-    private String major;
-    private String intermediate;
-    private String minor;
+    private String operationStatus;
     private String observation;
     private Date createdAt;
     private Date updatedAt;
@@ -34,8 +29,6 @@ public class OperatingRoom {
     private Operations operation;
     @ManyToOne
     private Users surgeon;
-    @ManyToOne
-    private Users assistant;
     @ManyToOne
     private Users nurse;
 
@@ -68,36 +61,20 @@ public class OperatingRoom {
         this.opProcedure = opProcedure;
     }
 
-    public String getEmergency() {
-        return emergency;
+    public String getOperationStatus() {
+        return operationStatus;
     }
 
-    public void setEmergency(String emergency) {
-        this.emergency = emergency;
+    public void setOperationStatus(String status) {
+        this.operationStatus = status;
     }
 
-    public String getEntrance() {
-        return entrance;
+    public String getEmergencyOrEntrance() {
+        return emergenceOrEntrance;
     }
 
-    public void setEntrance(String entrance) {
-        this.entrance = entrance;
-    }
-
-    public String getInduction() {
-        return induction;
-    }
-
-    public void setInduction(String induction) {
-        this.induction = induction;
-    }
-
-    public String getIncision() {
-        return incision;
-    }
-
-    public void setIncision(String incision) {
-        this.incision = incision;
+    public void setEmergencyOrEntrance(String entranceorentrance) {
+        this.emergenceOrEntrance = entranceorentrance;
     }
 
     public String getDressing() {
@@ -124,29 +101,6 @@ public class OperatingRoom {
         this.cleaning = cleaning;
     }
 
-    public String getMajor() {
-        return major;
-    }
-
-    public void setMajor(String major) {
-        this.major = major;
-    }
-
-    public String getIntermediate() {
-        return intermediate;
-    }
-
-    public void setIntermediate(String intermediate) {
-        this.intermediate = intermediate;
-    }
-
-    public String getMinor() {
-        return minor;
-    }
-
-    public void setMinor(String minor) {
-        this.minor = minor;
-    }
 
     public String getObservation() {
         return observation;
@@ -203,15 +157,6 @@ public class OperatingRoom {
     public void setOperation(Operations operation) {
         this.operation = operation;
     }
-
-    public Users getAssistant() {
-        return assistant;
-    }
-
-    public void setAssistant(Users assistant) {
-        this.assistant = assistant;
-    }
-
 
     public Users getSurgeon() {
         return surgeon;

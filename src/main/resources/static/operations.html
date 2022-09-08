@@ -109,6 +109,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Report</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="logout.html">
                         <i class="mdi mdi-grid-large icon-logout"></i>
                         <span class="menu-title">Logout</span>
@@ -129,16 +135,13 @@
                                     <table class="table">
                                         <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Patient Name</th>
                                             <th>District hospital</th>
                                             <th>Pre op. Diagnostic</th>
                                             <th>Planned procedure</th>
-                                            <th>Caution</th>
                                             <th>Assurance</th>
                                             <th>Accompanying</th>
-                                            <th>Provenance</th>
-                                            <th>Transfer</th>
-                                            <th>Received</th>
                                             <th>Observation</th>
                                             <th>Created</th>
                                         </tr>
@@ -210,9 +213,6 @@
                                     <td>${res[i].plannedProcedure}</td>
                                     <td>${res[i].assurance}</td>
                                     <td>${res[i].accompanying}</td>
-                                    <td>${res[i].provenance}</td>
-                                    <td>${res[i].transfer}</td>
-                                    <td>${res[i].received}</td>
                                     <td>${res[i].observation}</td>
                                     <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
                                 </tr>`;

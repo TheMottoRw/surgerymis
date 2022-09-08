@@ -29,7 +29,7 @@ public class PacuService {
         //send notification
         try {
             Patients patient = pacu.getPatient();
-            String message = "Hello "+patient.getPatientNames()+",Operation done, get well soon.";
+            String message = "SURGERY MIS\nHello "+patient.getPatientNames()+",Operation done, get well soon.";
             smsUtils.send(patient.getPhone(),message);
         }catch (IOException ex){
             ex.printStackTrace();

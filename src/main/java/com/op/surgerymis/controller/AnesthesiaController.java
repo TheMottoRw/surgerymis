@@ -34,16 +34,14 @@ public class AnesthesiaController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/anesthesia")
-    public void addAnesthesia(@RequestBody Anesthesia anesthesia, @RequestParam String patient, @RequestParam String operation, @RequestParam String anesthesiologist, @RequestParam String anesthetist) {
+    public void addAnesthesia(@RequestBody Anesthesia anesthesia, @RequestParam String patient, @RequestParam String operation,@RequestParam String anesthetist) {
         anesthesia.setCreatedAt(new Date());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
         Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
-        Users anesthesiologist0 = usersRepository.findById(Integer.parseInt(anesthesiologist)).get();
         Users anesthetist0 = usersRepository.findById(Integer.parseInt(anesthetist)).get();
         anesthesia.setPatient(patients);
         anesthesia.setOperation(operations);
         anesthesia.setAnesthetist(anesthetist0);
-        anesthesia.setAnesthesiologist(anesthesiologist0);
         anesthesiaService.addAnesthesia(anesthesia);
     }
 }

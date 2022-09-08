@@ -9,9 +9,9 @@ import java.util.Date;
 public class Anesthesia {
     @Id
     private int id;
-    private String asa;
     private String anesthesiaType;
     private String operativeDuration;
+    private String induction;
     private String anesthesiaDuration;
     private Boolean postOpDisposition;
     private Date createdAt;
@@ -25,8 +25,6 @@ public class Anesthesia {
     private Operations operation;
     @ManyToOne
     private Users anesthetist;
-    @ManyToOne
-    private Users anesthesiologist;
 
 
     public Anesthesia() {
@@ -39,14 +37,6 @@ public class Anesthesia {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAsa() {
-        return asa;
-    }
-
-    public void setAsa(String asa) {
-        this.asa = asa;
     }
 
     public String getAnesthesiaType() {
@@ -64,6 +54,13 @@ public class Anesthesia {
     public void setOperativeDuration(String operativeDuration) {
         this.operativeDuration = operativeDuration;
     }
+    public String getInduction() {
+        return induction;
+    }
+
+    public void setInduction(String induction) {
+        this.induction = induction;
+    }
 
     public String getAnesthesiaDuration() {
         return anesthesiaDuration;
@@ -71,14 +68,6 @@ public class Anesthesia {
 
     public void setAnesthesiaDuration(String anesthesiaDuration) {
         this.anesthesiaDuration = anesthesiaDuration;
-    }
-
-    public Users getAnesthesiologist() {
-        return anesthesiologist;
-    }
-
-    public void setAnesthesiologist(Users anesthesiologist) {
-        this.anesthesiologist = anesthesiologist;
     }
 
     public Users getAnesthetist() {

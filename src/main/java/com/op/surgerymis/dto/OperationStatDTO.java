@@ -8,7 +8,7 @@ public class OperationStatDTO {
     private String month;
     private String repetition;
 
-    public OperationStatDTO(Date month, String repetition){
+    public OperationStatDTO(String month, String repetition){
         System.out.println(Utils.getCurrentYear());
             this.month = !String.valueOf(month).equals("null") ? String.valueOf(month).substring(0, 7) : "N/A";
             this.repetition = repetition;

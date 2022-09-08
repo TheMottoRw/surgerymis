@@ -108,6 +108,13 @@
                         <span class="menu-title">Pacu</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Report</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
                         <i class="mdi mdi-grid-large icon-logout"></i>
@@ -131,22 +138,16 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Patient Name</th>
-                                            <th>Operation</th>
+                                            <th>Operation to be done</th>
                                             <th>Surgeon</th>
-                                            <th>Assistant</th>
                                             <th>Nurse</th>
                                             <th>Intra Op. Diagnostic</th>
                                             <th>Op. Procedure</th>
-                                            <th>Emergency</th>
-                                            <th>Entrance</th>
-                                            <th>Induction</th>
-                                            <th>Incision</th>
+                                            <th>Emergency/Entrance</th>
                                             <th>Dressing</th>
                                             <th>Out</th>
                                             <th>Cleaning</th>
-                                            <th>Major</th>
-                                            <th>Intermediate</th>
-                                            <th>Minor</th>
+                                            <th>Status</th>
                                             <th>Observation</th>
                                             <th>Created</th>
                                         </tr>
@@ -214,20 +215,15 @@
                                     <td>${res[i].patient.patientNames}</td>
                                     <td>${res[i].operation.plannedProcedure}</td>
                                     <td>${res[i].surgeon.name}</td>
-                                    <td>${res[i].assistant.name}</td>
                                     <td>${res[i].nurse.name}</td>
                                     <td>${res[i].intraOpDiagnosis}</td>
                                     <td>${res[i].opProcedure}</td>
-                                    <td>${res[i].emergency}</td>
-                                    <td>${res[i].entrance}</td>
-                                    <td>${res[i].induction}</td>
+                                    <td>${res[i].emergenceOrEntrance}</td>
                                     <td>${res[i].incision}</td>
                                     <td>${res[i].dressing}</td>
                                     <td>${res[i].out_}</td>
                                     <td>${res[i].cleaning}</td>
-                                    <td>${res[i].major}</td>
-                                    <td>${res[i].intermediate}</td>
-                                    <td>${res[i].minor}</td>
+                                    <td>${res[i].operationStatus}</td>
                                     <td>${res[i].observation}</td>
                                     <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
                                 </tr>`;

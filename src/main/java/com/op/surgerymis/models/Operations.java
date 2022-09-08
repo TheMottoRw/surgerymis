@@ -15,11 +15,8 @@ public class Operations {
     private String plannedProcedure;
     private String assurance;
     private String accompanying;
-    private String provenance;
-    private String transfer;
-    private Boolean received;
     private String observation;
-    private Date createdAt;
+    private String createdAt;
     private Date updatedAt;
     private Boolean isDeleted;
     private Date deletedAt;
@@ -80,30 +77,6 @@ public class Operations {
         this.accompanying = accompanying;
     }
 
-    public String getProvenance() {
-        return provenance;
-    }
-
-    public void setProvenance(String provenance) {
-        this.provenance = provenance;
-    }
-
-    public String getTransfer() {
-        return transfer;
-    }
-
-    public void setTransfer(String transfer) {
-        this.transfer = transfer;
-    }
-
-    public Boolean getReceived() {
-        return received;
-    }
-
-    public void setReceived(Boolean received) {
-        this.received = received;
-    }
-
     public String getObservation() {
         return observation;
     }
@@ -112,11 +85,11 @@ public class Operations {
         this.observation = observation;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

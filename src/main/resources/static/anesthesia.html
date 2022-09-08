@@ -109,6 +109,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Report</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="logout.html">
                         <i class="mdi mdi-grid-large icon-logout"></i>
                         <span class="menu-title">Logout</span>
@@ -131,12 +137,11 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Patient Name</th>
-                                            <th>Operation</th>
-                                            <th>ASA</th>
+                                            <th>Operation to be done</th>
                                             <th>Anesthesia Type</th>
+                                            <th>Induction</th>
                                             <th>Operative duration</th>
                                             <th>Anesthesia duration</th>
-                                            <th>Anesthesiologist</th>
                                             <th>Anesthetist</th>
                                             <th>Created</th>
                                         </tr>
@@ -203,11 +208,10 @@
                                     <td>${i + 1}</td>
                                     <td>${res[i].patient.patientNames}</td>
                                     <td>${res[i].operation.plannedProcedure}</td>
-                                    <td>${res[i].asa}</td>
                                     <td>${res[i].anesthesiaType}</td>
+                                    <td>${res[i].induction}</td>
                                     <td>${res[i].operativeDuration}</td>
                                     <td>${res[i].anesthesiaDuration}</td>
-                                    <td>${res[i].anesthesiologist.name}</td>
                                     <td>${res[i].anesthetist.name}</td>
                                     <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
                                 </tr>`;

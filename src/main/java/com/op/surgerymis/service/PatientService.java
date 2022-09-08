@@ -28,7 +28,7 @@ public class PatientService {
         patientsRepository.save(patient);
         //send sms
         try {
-            String message = "Hello "+patient.getPatientNames()+",Information recorded successfully.";
+            String message = "SURGERY MIS\nHello "+patient.getPatientNames()+",Information recorded successfully.";
             smsUtils.send(patient.getPhone(),message);
         }catch (IOException ex){
             ex.printStackTrace();

@@ -111,6 +111,14 @@
                         <span class="menu-title">Pacu</span>
                     </a>
                 </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <span class="menu-title">Report</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
                         <i class="mdi mdi-grid-large icon-logout"></i>
@@ -156,11 +164,6 @@
                                                 <div>
                                                     <p class="statistics-title">Nurses</p>
                                                     <h3 class="rate-nurses">0</h3>
-
-                                                </div>
-                                                <div>
-                                                    <p class="statistics-title">Anesthesiologist</p>
-                                                    <h3 class="rate-anesthesiologist">0</h3>
 
                                                 </div>
                                                 <div class="d-none d-md-block">
@@ -223,7 +226,7 @@
                                                                 <div class="col-lg-12">
                                                                     <div class="d-flex justify-content-between align-items-center">
                                                                         <h4 class="card-title card-title-dash">Transfer
-                                                                            chart</h4>
+                                                                            chart from district hospital</h4>
                                                                     </div>
 
                                                                     <div class="table-responsive  mt-1">
@@ -335,7 +338,6 @@
                     $("#transfer-data").html(data);
                     $(".rate-surgeons").html(users.surgeons);
                     $(".rate-nurses").html(users.nurses);
-                    $(".rate-anesthesiologist").html(users.anesthesiologists);
                     $(".rate-anesthetist").html(users.anesthetists);
                     $(".rate-patients").html(users.patients);
                     $(".rate-operations").html(users.operations);

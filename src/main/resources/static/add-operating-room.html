@@ -141,7 +141,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
+                                        <label for="operation">Operation to be done</label>
                                         <select  class="form-control" id="operation">
                                         </select>
                                     </div>
@@ -156,11 +156,6 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="assistant">Assistant</label>
-                                        <select  class="form-control" id="assistant">
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
                                         <label for="intraOpDiagnosis">Intra operation diagnosis</label>
                                         <textarea class="form-control" id="intraOpDiagnosis" cols="3"></textarea>
 
@@ -172,23 +167,11 @@
 
                                     </div>
                                     <div class="form-group">
-                                        <label for="emergency">Emergency</label>
-                                        <input type="text" class="form-control" id="emergency">
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="entrance">Entrance</label>
-                                        <input type="text" class="form-control" id="entrance">
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="induction">Induction</label>
-                                        <input type="text" class="form-control" id="induction">
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="incision">Incision</label>
-                                        <input type="text" class="form-control" id="incision">
+                                        <label for="emergenceorentrance">Emergency or Entrance</label>
+                                        <select class="form-control" id="emergenceorentrance">
+                                            <option>Emergency</option>
+                                            <option>Entrance</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="dressing">Dressing</label>
@@ -196,23 +179,19 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="out">Out</label>
-                                        <input type="text" class="form-control" id="out">
+                                        <input type="date" class="form-control" id="out">
                                     </div>
                                     <div class="form-group">
                                         <label for="cleaning">Cleaning</label>
                                         <input type="text" class="form-control" id="cleaning">
                                     </div>
                                     <div class="form-group">
-                                        <label for="major">Major</label>
-                                        <input type="text" class="form-control" id="major">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="intermediate">Intermediate</label>
-                                        <input type="text" class="form-control" id="intermediate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="minor">Minor</label>
-                                        <input type="text" class="form-control" id="minor">
+                                        <label for="operationStatus">Operation status</label>
+                                        <select type="text" class="form-control" id="operationStatus">
+                                            <option>Major</option>
+                                            <option>Intermediate</option>
+                                            <option>Minor</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="observation">Observation</label>
@@ -269,25 +248,19 @@
         const patient = $("#patient").val(),
               operation = $("#operation").val(),
               surgeon = $("#surgeon").val(),
-              nurse = $("#nurse").val(),
-              assistant = $("#assistant").val();
+              nurse = $("#nurse").val();
         const data = JSON.stringify({
             intraOpDiagnosis: $("#intraOpDiagnosis").val(),
             opProcedure: $("#opProcedure").val(),
-            emergency: $("#emergency").val(),
-            entrance: $("#entrance").val(),
-            induction: $("#induction").val(),
-            incision: $("#incision").val(),
+            operationStatus: $("#operationStatus").val(),
+            emergenceOrEntrance: $("#emergenceorentrance").val(),
             dressing: $("#dressing").val(),
             out_: $("#out").val(),
             cleaning: $("#cleaning").val(),
-            major: $("#major").val(),
-            intermediate: $("#intermediate").val(),
-            minor: $("#minor").val(),
             observation: $("#observation").val()
         });
         $.ajax({
-            url: `api/oproom?patient=${patient}&operation=${operation}&surgeon=${surgeon}&nurse=${nurse}&assistant=${assistant}`,
+            url: `api/oproom?patient=${patient}&operation=${operation}&surgeon=${surgeon}&nurse=${nurse}`,
             method: 'POST',
             data: data,
             headers: {
@@ -300,16 +273,9 @@
                 $("#response_error").hide();
                 $("#intraOpDiagnosis").val("");
                 $("#opProcedure").val("");
-                $("#emergency").val("");
-                $("#entrance").val("");
-                $("#induction").val("");
-                $("#incision").val("");
                 $("#dressing").val("");
                 $("#out").val("");
                 $("#cleaning").val("");
-                $("#major").val("");
-                $("#intermediate").val("");
-                $("#minor").val("");
                 $("#observation").val("");
             } else {
                 $("#response_success").hide();
@@ -377,22 +343,6 @@
             }
         })
     }
-    function loadAssistant() {
-        $.ajax({
-            url: "api/users/find?userType=Assistant",
-            method: 'GET',
-            data: {},
-            dataType: 'json',
-            success: function (res) {
-                console.log(`Data len ${res.length}`);
-                var data = '';
-                for (var i = 0; i < res.length; i++) {
-                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
-                }
-                $("#assistant").html(data)
-            }
-        })
-    }
     function loadOperationByPatient(patient) {
         $.ajax({
             url: `api/operations/bypatient?patient=${patient}`,
@@ -416,7 +366,6 @@
     loadPatient();
     loadSurgeon();
     loadNurses();
-    loadAssistant();
     $("#patient").change(function(){
         loadOperationByPatient($(this).val());
     })

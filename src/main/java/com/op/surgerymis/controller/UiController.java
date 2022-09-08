@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class UiController {
     @RequestMapping(method = RequestMethod.GET, value = "/home")
     public String uiPage(){
-        return "index";
+        return "dashboard";
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String index(){
+        return "login";
     }
 
 }

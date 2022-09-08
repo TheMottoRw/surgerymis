@@ -142,24 +142,14 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
+                                        <label for="operation">Operation to be done</label>
                                         <select  class="form-control" id="operation">
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="anesthesiologist">Anesthesiologist</label>
-                                        <select  class="form-control" id="anesthesiologist">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="anesthetist">Anesthetist</label>
                                         <select  class="form-control" id="anesthetist">
                                         </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="asa">ASA</label><!--Uko umurwayi ameze Score-->
-                                        <input type="text" class="form-control" id="asa" placeholder="ASA Records">
-
                                     </div>
                                     <div class="form-group">
                                         <label for="anesthesiaType">Anesthesia type</label>
@@ -180,6 +170,10 @@
 <!--                                        <label for="opiods">Opiods</label>-->
 <!--                                        <input type="text" class="form-control" id="opiods"/>-->
 <!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="induction">Induction</label>
+                                        <input type="text" class="form-control" id="induction" />
+                                    </div>
                                     <div class="form-group">
                                         <label for="operativeDuration">Operative duration</label>
                                         <input type="text" class="form-control" id="operativeDuration"/>
@@ -242,19 +236,17 @@
     function saveAnesthesia() {
         const patient = $("#patient").val(),
             operation = $("#operation").val(),
-            anesthesiologist = $("#anesthesiologist").val(),
             anesthetist = $("#anesthetist").val();
         const data = JSON.stringify({
-            asa: $("#asa").val(),
             anesthesiaType: $("#anesthesiaType").val(),
-            // anesthesiaDrugs: $("#anesthesiaDrugs").val(),
+            induction: $("#induction").val(),
             // opiods: $("#opiods").val(),
             operativeDuration: $("#operativeDuration").val(),//time of anesthesia (Igihe operation ikorerwa compared n'igihe ikinya kimara)
             anesthesiaDuration: $("#anesthesiaDuration").val(),//default 1h30
             postOpDisposition: $("#postOpDisposition").checked?1:0
         });
         $.ajax({
-            url: `api/anesthesia?patient=${patient}&operation=${operation}&anesthesiologist=${anesthesiologist}&anesthetist=${anesthetist}`,
+            url: `api/anesthesia?patient=${patient}&operation=${operation}&anesthetist=${anesthetist}`,
             method: 'POST',
             data: data,
             headers: {
@@ -265,9 +257,8 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#asa").val("");
                 $("#anesthesiaType").val("");
-                // $("#anesthesiaDrugs").val("");
+                $("#induction").val("");
                 // $("#opiods").val("");
                 $("#operativeDuration").val("");
                 $("#anesthesiaDuration").val("");

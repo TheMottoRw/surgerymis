@@ -149,8 +149,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="preOpDiagnostic">Pre Op Diagnostic</label>
-                                        <textarea type="text" class="form-control" id="preOpDiagnostic" placeholder="Pre operation diagnostic details" cols="3">
-                                        </textarea>
+                                        <input type="text" class="form-control" id="preOpDiagnostic" placeholder="Pre operation diagnostic details"/>
 
                                     </div>
                                     <div class="form-group">
@@ -169,20 +168,8 @@
                                         <input type="text" class="form-control" id="accompanying">
                                     </div>
                                     <div class="form-group">
-                                        <label for="provenance">Provenance</label>
-                                        <input type="text" class="form-control" id="provenance">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="transfer">Transfer</label>
-                                        <input type="text" class="form-control" id="transfer">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="received">Received</label>
-                                        <input type="checkbox" id="received"> &nbsp;&nbsp;&nbsp;Is received?
-                                    </div>
-                                    <div class="form-group">
                                         <label for="observation">Observation</label>
-                                        <textarea type="text" class="form-control" id="observation" cols="3"></textarea>
+                                        <input type="text" class="form-control" id="observation" />
                                     </div>
                                     <button type="button" id="btnAddOperation" class="btn btn-primary me-2">Register</button>
                                     <a href="operations.html" class="btn btn-danger">Cancel</a>
@@ -241,9 +228,9 @@
             // caution: $("#caution").val(),
             assurance: $("#assurance").val(),
             accompanying: $("#accompanying").val(),
-            provenance: $("#provenance").val(),
-            transfer: $("#transfer").val(),
-            received: $("#received").checked?1:0,
+            // provenance: $("#provenance").val(),
+            // transfer: $("#transfer").val(),
+            // received: $("#received").checked?1:0,
             observed: $("#observation").val()
         });
         $.ajax({
