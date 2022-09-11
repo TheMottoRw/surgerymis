@@ -132,16 +132,17 @@
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-                    <form class="form-inline">>
-                        <div class="form-group mx-sm-3 mb-2 col-l-3" id="installation_date_form">
+
+                    <form class="form-inline">
+                        <div class="form-group mx-sm-3 mb-2 col-lg-3" id="installation_date_form">
                             <label for="operation_date_range">Operation date range</label>&nbsp;&nbsp;&nbsp;
                             <input type="text" name="operation_date_range" id="operation_date_range"
                                    class="form-control" readonly/>
                         </div>
-                        <div class="col-lg-9">
-                            <button type="button" class="btn btn-primary btn-sm mb-2" id="btnFilter">Filter</button>
+                        <div class="form-group mx-sm-3 mb-2" style="margin-left: 23% !important;margin-top: -40px;">
+                            <button type="button" class="btn btn-primary btn-sm mb-2" id="btnFilter">   Filter   </button>
                             <button type="button"
-                                    class="mx-sm-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm pull-right"
+                                    class="mx-sm-3 d-sm-inline-block btn btn-sm btn-primary shadow-sm "
                                     id="btnGenerateReport" style="margin-top: -10px"><i
                                     class="fas fa-download fa-sm text-white-50"></i> Generate
                                 Report
@@ -221,7 +222,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
         integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
         crossorigin="anonymous"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<!--<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>-->
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
 <!-- End custom js for this page-->
 <script>
@@ -272,10 +277,28 @@
 
     function downloadJs() {
         let pdf = new jsPDF('l', 'pt', [1720, 640]);
-        pdf.html(document.getElementById('table-report'), {
+        // let pdf = new jsPDF('landscape', 'pt', "a2");
+        pdf.page=1;
+        $("#table-report").style='margin-left:100px;';
+        pdf.html(document.getElementById("table-report"), {
             callback: function (pdf) {
-                pdf.save('Report.pdf');
-                $("#dataTable").removeAttr('style');
+                pdf.save(`Surgery MIS Report ${$("#operation_date_range").val().replaceAll("/","_").replaceAll("-","to")}.pdf`);
+                $("#table-report").removeAttr('style');
+            }
+        });
+    }
+
+    function gApiDownloadJs(){
+        html2canvas($('#table-report')[0], {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [{
+                        image: data,
+                        width: 500
+                    }]
+                };
+                pdfMake.createPdf(docDefinition).download(`Surgery MIS Report ${$("#operation_date_range").val().replaceAll("/","_").replaceAll("-","to")}.pdf`);
             }
         });
     }
@@ -284,7 +307,7 @@
         filterOperationByDate();
     })
     $("#btnGenerateReport").click(function () {
-        downloadJs();
+        gApiDownloadJs();
     })
 </script>
 </body>

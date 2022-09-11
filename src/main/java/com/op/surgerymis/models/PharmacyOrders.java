@@ -14,12 +14,11 @@ public class PharmacyOrders {
     private Patients patient;
     @ManyToOne
     private Pharmacy pharmacy;
+    @ManyToOne
+    private Users nurse;
 
     private String kit;
-    private String reception;
     private String delivery;
-    private String isReturned;
-    private String returnDate;
     private Date createdAt;
     private Date updatedAt;
     private Boolean isDeleted;
@@ -52,6 +51,13 @@ public class PharmacyOrders {
     public void setPharmacy(Pharmacy pharmacy) {
         this.pharmacy = pharmacy;
     }
+    public Users getNurse() {
+        return nurse;
+    }
+
+    public void setNurse(Users nurse) {
+        this.nurse = nurse;
+    }
 
     public String getKit() {
         return kit;
@@ -59,14 +65,6 @@ public class PharmacyOrders {
 
     public void setKit(String kit) {
         this.kit = kit;
-    }
-
-    public String getReception() {
-        return reception;
-    }
-
-    public void setReception(String reception) {
-        this.reception = reception;
     }
 
     public String getDelivery() {
@@ -77,21 +75,6 @@ public class PharmacyOrders {
         this.delivery = delivery;
     }
 
-    public String getIsReturned() {
-        return isReturned;
-    }
-
-    public void setIsReturned(String isReturned) {
-        this.isReturned = isReturned;
-    }
-
-    public String getReturnDate() {
-        return returnDate;
-    }
-
-    public void setReturnDate(String returnDate) {
-        this.returnDate = returnDate;
-    }
 
     public Date getCreatedAt() {
         return createdAt;

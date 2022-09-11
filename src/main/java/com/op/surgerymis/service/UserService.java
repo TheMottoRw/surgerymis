@@ -1,6 +1,8 @@
 package com.op.surgerymis.service;
 
+import com.op.surgerymis.models.Pharmacy;
 import com.op.surgerymis.models.Users;
+import com.op.surgerymis.repository.PharmacyRepository;
 import com.op.surgerymis.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ public class UserService {
 
     @Autowired
     public UsersRepository usersRepository;
+    @Autowired
+    public PharmacyRepository pharmacyRepository;
 
     public List<Users> getAllUsers() {
         List<Users> users = new ArrayList<>();
@@ -39,12 +43,25 @@ public class UserService {
         usersRepository.save(user);
     }
     public List<Users> login(String email,String password){
+        List<Users> users = new ArrayList<Users>();
         List<String> userTypes = new ArrayList<>();
         userTypes.add("Admin");
         userTypes.add("Receptionist");
         userTypes.add("Pharmacist");
         userTypes.add("Operation manager");
-        return usersRepository.findUsersByEmailAndPasswordAndUserTypeIn(email,password,userTypes);
+        users = usersRepository.findUsersByEmailAndPasswordAndUserTypeIn(email,password,userTypes);
+        if (users.size()>0) {
+            if (users.get(0).getUserType().equals("Pharmacist")) {
+
+                List<Pharmacy> pharmacyArr = pharmacyRepository.findPharmacyByRepresentedBy(usersRepository.findById(users.get(0).getId()).get());
+                if (pharmacyArr.size() > 0) {
+                    users.get(0).setId(pharmacyArr.get(0).getId());
+                }else return new ArrayList<Users>();
+            }else {
+                return users;
+            }
+        }
+        return users;
     }
 
 }

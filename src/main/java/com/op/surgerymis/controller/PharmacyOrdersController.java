@@ -26,18 +26,27 @@ public class PharmacyOrdersController {
     PatientsRepository patientsRepository;
     @Autowired
     PharmacyRepository pharmacyRepository;
+    @Autowired
+    UsersRepository usersRepository;
 
-    @RequestMapping("/api/orders")
+    @RequestMapping("/api/allorders")
     public List<PharmacyOrders> getAllPharmacy(){
         return ordersService.getAllOrders();
     }
+    @RequestMapping("/api/orders")
+    public List<PharmacyOrders> getOrdersByPharmacy(@RequestParam String pharmacy){
+        Pharmacy pharmacy1 = pharmacyRepository.findById(Integer.parseInt(pharmacy)).get();
+        return ordersService.getOrdersByPharmacy(pharmacy1);
+    }
     @RequestMapping(method = RequestMethod.POST,value = "/api/order")
-    public void addPharmacy(@RequestBody PharmacyOrders orders, @RequestParam String patient,@RequestParam String pharmacy){
+    public void addPharmacy(@RequestBody PharmacyOrders orders, @RequestParam String patient,@RequestParam String pharmacy,@RequestParam String nurse){
         orders.setCreatedAt(new Date());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
         Pharmacy pharmacy0 = pharmacyRepository.findById(Integer.parseInt(pharmacy)).get();
+        Users nurses = usersRepository.findById(Integer.parseInt(nurse)).get();
         orders.setPatient(patients);
         orders.setPharmacy(pharmacy0);
+        orders.setNurse(nurses);
         ordersService.addOrder(orders);
     }
 }

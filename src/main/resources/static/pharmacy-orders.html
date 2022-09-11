@@ -104,12 +104,11 @@
                                         <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Nurse</th>
                                             <th>Patient</th>
                                             <th>Pharmacy</th>
                                             <th>Kit</th>
-                                            <th>Reception</th>
                                             <th>Delivery</th>
-                                            <th>Return</th>
                                             <th>Created</th>
                                         </tr>
                                         </thead>
@@ -164,7 +163,7 @@
     $(document).ready(function () {
         function loadPharmacyOrders() {
             $.ajax({
-                url: `api/orders`,
+                url: `api/orders?pharmacy=${localStorage.getItem("surgerymis_user_id")}`,
                 method: 'GET',
                 data: {},
                 dataType: 'json',
@@ -174,12 +173,11 @@
                     for (var i = 0; i < res.length; i++) {
                         data += `<tr>
                                     <td>${i + 1}</td>
+                                    <td>${res[i].nurse.name}</td>
                                     <td>${res[i].patient.patientNames}</td>
                                     <td>${res[i].pharmacy.pharmacyName}</td>
                                     <td>${res[i].kit}</td>
-                                    <td>${res[i].reception}</td>
                                     <td>${res[i].delivery}</td>
-                                    <td>${res[i].returnDate !== null ? res[i].returnDate : "NA"}</td>
                                     <td>${res[i].createdAt !== null ? res[i].createdAt.replace('T', ' ').substring(0, 16) : "NA"}</td>
                                 </tr>`;
                     }

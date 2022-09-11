@@ -1,5 +1,6 @@
 package com.op.surgerymis.service;
 
+import com.op.surgerymis.models.Pharmacy;
 import com.op.surgerymis.models.PharmacyOrders;
 import com.op.surgerymis.repository.PharmacyOrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class PharmacyOrdersService {
     public List<PharmacyOrders> getAllOrders() {
         List<PharmacyOrders> orders = new ArrayList<>();
         pharmacyOrdersRepository.findAll().forEach(orders::add);
+        return orders;
+    }
+    public List<PharmacyOrders> getOrdersByPharmacy(Pharmacy pharmacy) {
+        List<PharmacyOrders> orders = new ArrayList<>();
+        pharmacyOrdersRepository.getPharmacyOrdersByPharmacy(pharmacy).forEach(orders::add);
         return orders;
     }
     public void addOrder(PharmacyOrders orders){
