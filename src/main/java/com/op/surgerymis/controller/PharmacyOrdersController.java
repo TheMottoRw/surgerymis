@@ -33,6 +33,10 @@ public class PharmacyOrdersController {
     public List<PharmacyOrders> getAllPharmacy(){
         return ordersService.getAllOrders();
     }
+    @RequestMapping("/api/order/{id}")
+    public PharmacyOrders getOrderById(String id){
+        return ordersService.getOrderById(id);
+    }
     @RequestMapping("/api/orders")
     public List<PharmacyOrders> getOrdersByPharmacy(@RequestParam String pharmacy){
         Pharmacy pharmacy1 = pharmacyRepository.findById(Integer.parseInt(pharmacy)).get();
@@ -48,5 +52,16 @@ public class PharmacyOrdersController {
         orders.setPharmacy(pharmacy0);
         orders.setNurse(nurses);
         ordersService.addOrder(orders);
+    }
+    @RequestMapping(method = RequestMethod.PUT,value = "/api/order/{id}")
+    public void addPharmacy(@PathVariable String id,@RequestBody PharmacyOrders orders, @RequestParam String patient,@RequestParam String pharmacy,@RequestParam String nurse){
+        orders.setUpdatedAt(new Date());
+        Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
+        Pharmacy pharmacy0 = pharmacyRepository.findById(Integer.parseInt(pharmacy)).get();
+        Users nurses = usersRepository.findById(Integer.parseInt(nurse)).get();
+        orders.setPatient(patients);
+        orders.setPharmacy(pharmacy0);
+        orders.setNurse(nurses);
+        ordersService.updatePharmacy(id,orders);
     }
 }

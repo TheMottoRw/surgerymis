@@ -21,7 +21,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -39,7 +39,7 @@
                         <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="images/logo-mini.svg" alt="logo" />
+                    <img src="images/logo-mini.svg" alt="logo"/>
                 </a>
             </div>
         </div>
@@ -47,10 +47,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-bs-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -62,10 +64,12 @@
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
         </div>
@@ -76,45 +80,52 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="dashboard.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="operations.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Operations</span>
+                    <a class="nav-link" href="anesthesia.html">
+                        <i class="mdi mdi-console-line menu-icon"></i>
+                        <span class="menu-title">Anesthesia</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="operating-room.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-hospital-building menu-icon"></i>
                         <span class="menu-title">Operating room</span>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="anesthesia.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Anesthesia</span>
+                    <a class="nav-link" href="operations.html">
+                        <i class="mdi mdi-garage menu-icon"></i>
+                        <span class="menu-title">Operations</span>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="pacu.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-bed-empty menu-icon"></i>
                         <span class="menu-title">Pacu</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
-                        <span class="menu-title">Logot</span>
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-printer menu-icon"></i>
+                        <span class="menu-title">Report</span>
                     </a>
                 </li>
-
-
-
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.html">
+                        <i class="mdi mdi--logout menu-icon"></i>
+                        <span class="menu-title">Logout</span>
+                    </a>
+                </li>
             </ul>
+
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -129,42 +140,47 @@
                                     Record operating room information
                                 </p>
                                 <form class="forms-sample">
-                                    <div id="response_error" class="alert alert-danger" style="display: none">Something went
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something
+                                        went
                                         wrong,can't add operating room details
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Operating room details added
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Operating room details added
                                         successful
                                     </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
-                                        <select  class="form-control" id="patient">
+                                        <select class="form-control" id="patient">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="operation">Operation to be done</label>
-                                        <select  class="form-control" id="operation">
+                                        <select class="form-control" id="operation">
                                         </select>
+                                        <div id="operation-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="surgeon">Surgeon</label>
-                                        <select  class="form-control" id="surgeon">
+                                        <select class="form-control" id="surgeon">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="nurse">Nurse</label>
-                                        <select  class="form-control" id="nurse">
+                                        <select class="form-control" id="nurse">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="intraOpDiagnosis">Intra operation diagnosis</label>
                                         <textarea class="form-control" id="intraOpDiagnosis" cols="3"></textarea>
+                                        <div id="intraopdiag-validation-error"></div>
 
                                     </div>
                                     <div class="form-group">
                                         <label for="opProcedure">Operation procedure</label>
-                                        <textarea class="form-control" id="opProcedure" placeholder="Operation procedure to be followed" cols="3">
+                                        <textarea class="form-control" id="opProcedure"
+                                                  placeholder="Operation procedure to be followed" cols="3">
                                         </textarea>
-
+                                        <div id="opprocedure-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="emergenceorentrance">Emergency or Entrance</label>
@@ -176,14 +192,17 @@
                                     <div class="form-group">
                                         <label for="dressing">Dressing</label>
                                         <input type="text" class="form-control" id="dressing">
+                                        <div id="dressing-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="out">Out</label>
                                         <input type="date" class="form-control" id="out">
+                                        <div id="out-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="cleaning">Cleaning</label>
                                         <input type="text" class="form-control" id="cleaning">
+                                        <div id="cleaning-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="operationStatus">Operation status</label>
@@ -196,9 +215,12 @@
                                     <div class="form-group">
                                         <label for="observation">Observation</label>
                                         <input type="text" class="form-control" id="observation">
+                                        <div id="observation-validation-error"></div>
                                     </div>
-                                    <button type="button" id="btnAddOperatingRoom" class="btn btn-primary me-2">Register</button>
-                                    <a href="operating-room.html" class="btn btn-danger">Cancel</a>
+                                    <button type="button" id="btnAddOperatingRoom" class="btn btn-primary me-2">
+                                        Register
+                                    </button>
+                                    <a href="operating-room.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -242,13 +264,41 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 <script>
+    function validateOperatingRoom() {
+        const intraopdiag_validation = validateText($("#intraOpDiagnosis").val().trim());
+        const opprocedure_validation = validateText($("#opProcedure").val().trim());
+        const dressing_validation = validateText($("#dressing").val());
+        const out_validation = $("#out").val() !== '';
+        const cleaning_validation = validateText($("#cleaning").val().trim());
+        const observation_validation = validateText($("#observation").val());
+        const operation_validation = validateNumber($("#operation").val());
+
+        if (!intraopdiag_validation) $("#intraopdiag-validation-error").html("<font color='red'>Invalid intraoperation diagnostics</font>");
+        else $("#intraopdiag-validation-error").html("");
+        if (!opprocedure_validation) $("#opprocedure-validation-error").html("<font color='red'>Invalid operation procedure record</font>");
+        else $("#opprocedure-validation-error").html("");
+        if (!dressing_validation) $("#dressing-validation-error").html("<font color='red'>Invalid dressing information</font>");
+        else $("#dressing-validation-error").html("");
+        if (!out_validation) $("#out-validation-error").html("<font color='red'>Out must not be empty</font>");
+        else $("#out-validation-error").html("");
+        if (!cleaning_validation) $("#cleaning-validation-error").html("<font color='red'>Invalid cleaning information</font>");
+        else $("#cleaning-validation-error").html("");
+        if (!observation_validation) $("#observation-validation-error").html("<font color='red'>Observation must not be empty</font>");
+        else $("#observation-validation-error").html("");
+        if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
+        else $("#operation-validation-error").html("");
+
+        return intraopdiag_validation && opprocedure_validation && dressing_validation && out_validation && cleaning_validation && observation_validation && operation_validation;
+    }
+
     function saveOperatingRoom() {
         const patient = $("#patient").val(),
-              operation = $("#operation").val(),
-              surgeon = $("#surgeon").val(),
-              nurse = $("#nurse").val();
+            operation = $("#operation").val(),
+            surgeon = $("#surgeon").val(),
+            nurse = $("#nurse").val();
         const data = JSON.stringify({
             intraOpDiagnosis: $("#intraOpDiagnosis").val(),
             opProcedure: $("#opProcedure").val(),
@@ -266,7 +316,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).done(function (result,textStatus,xhr) {
+        }).done(function (result, textStatus, xhr) {
             console.log(xhr.status);
             if (xhr.status === 200) {
                 $("#response_success").show();
@@ -286,7 +336,7 @@
                 $("#response_error").hide();
                 $("#response_success").hide();
             }, 7000);
-        }).fail(function(xhr,status){
+        }).fail(function (xhr, status) {
             console.log("Something went wrong")
             console.log(xhr.status);
             console.log(status);
@@ -327,6 +377,7 @@
             }
         })
     }
+
     function loadNurses() {
         $.ajax({
             url: "api/users/find?userType=Nurse",
@@ -343,6 +394,7 @@
             }
         })
     }
+
     function loadOperationByPatient(patient) {
         $.ajax({
             url: `api/operations/bypatient?patient=${patient}`,
@@ -361,12 +413,13 @@
     }
 
     $("#btnAddOperatingRoom").click(function () {
-        saveOperatingRoom();
+        if (validateOperatingRoom())
+            saveOperatingRoom();
     });
     loadPatient();
     loadSurgeon();
     loadNurses();
-    $("#patient").change(function(){
+    $("#patient").change(function () {
         loadOperationByPatient($(this).val());
     })
 </script>

@@ -24,6 +24,10 @@ public class UserController {
     public List<Users> getUsersByType(@RequestParam String userType){
         return userService.getUserByType(userType);
     }
+    @RequestMapping(method = RequestMethod.GET,value="/api/user/{id}")
+    public Users getUsersById(@PathVariable String id){
+        return userService.getUserById(id);
+    }
     @RequestMapping(method = RequestMethod.POST,value = "/api/user")
     public void addUser(@RequestBody Users user){
         user.setCreatedAt(new Date());

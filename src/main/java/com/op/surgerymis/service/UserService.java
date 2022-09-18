@@ -29,6 +29,10 @@ public class UserService {
         users = usersRepository.findByUserType(userType);
         return users;
     }
+    public Users getUserById(String id) {
+        Users users = usersRepository.findById(Integer.parseInt(id)).get();
+        return users;
+    }
     public void addUser(Users user){
         user.setCreatedAt(new Date());
         usersRepository.save(user);

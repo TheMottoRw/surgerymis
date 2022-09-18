@@ -34,7 +34,7 @@
                 </button>
             </div>
             <div>
-                <a class="navbar-brand brand-logo" href="dashboard.html">
+                <a class="navbar-brand brand-logo" href="index.html">
                     <h4><img src="images/surgerymis-logo.png" alt="logo" class="img img-thumbnail"/>
                         <font color="black">Surger MIS</font></h4>
                 </a>
@@ -135,50 +135,65 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Record pacu information
-                                </h4>
+                                <h4 class="card-title">Add new operation</h4>
+                                <p class="card-description">
+                                    Record operation information
+                                </p>
                                 <form class="forms-sample">
                                     <div id="response_error" class="alert alert-danger" style="display: none">Something
                                         went
-                                        wrong,can't add pacu
+                                        wrong,can't add an operation
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Pacu
-                                        added
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Operation updated
                                         successful
                                     </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
                                         <select class="form-control" id="patient">
+                                            <option>Admin</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
-                                        <select class="form-control" id="operation">
-                                        </select>
-                                        <div id="operation-validation-error"></div>
+                                        <label for="districtHospital">District hospital</label>
+                                        <input type="text" class="form-control" id="districtHospital"
+                                               placeholder="District hospital name">
+                                        <div id="districthosp-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exitDate">Exit date</label>
-                                        <input type="date" class="form-control" id="exitDate" placeholder="Exit date">
-                                        <div id="exitdate-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="destination">Destination </label>
-                                        <input type="text" class="form-control" id="destination"
-                                               placeholder="Destination">
-                                        <div id="destination-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="observation">Comment</label>
-                                        <textarea type="text" class="form-control" id="observation"
-                                                  placeholder="Observation" rows="3">
-                                        </textarea>
-                                        <div id="comment-validation-error"></div>
-
+                                        <label for="preOpDiagnostic">Pre Op Diagnostic</label>
+                                        <input type="text" class="form-control" id="preOpDiagnostic"
+                                               placeholder="Pre operation diagnostic details"/>
+                                        <div id="preopdiag-validation-error"></div>
 
                                     </div>
-                                    <button type="button" id="btnAddPacu" class="btn btn-primary me-2">Register</button>
-                                    <a href="pacu.html" class="btn btn-danger">Back</a>
+                                    <div class="form-group">
+                                        <label for="plannedProcedure">Planned procedure</label>
+                                        <input type="text" class="form-control" id="plannedProcedure"
+                                               placeholder="Planned procedure details">
+                                        <div id="plannedprc-validation-error"></div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="assurance">Assurance</label>
+                                        <input type="text" class="form-control" id="assurance">
+                                        <div id="assurance-validation-error"></div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="accompanying">Accompanying</label>
+                                        <input type="text" class="form-control" id="accompanying">
+                                        <div id="accompanying-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="observation">Observation</label>
+                                        <input type="text" class="form-control" id="observation"/>
+                                        <div id="observation-validation-error"></div>
+                                    </div>
+                                    <button type="button" id="btnUpdateOperation" class="btn btn-primary me-2">Update
+                                    </button>
+                                    <a href="operations.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -223,38 +238,50 @@
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
 <script src="helper/validators.js"></script>
+
 <!-- End custom js for this page-->
-
 <script>
-    function validatePacu() {
-        const operation_validation = validateNumber($("#operation").val());
-        const exitdate_validation = $("#exitDate").val()!=='';
-        const destination_validation = validateText($("#destination").val().trim());
-        const comment_validation = validateText($("#observation").val().trim());
+    function validateOperations() {
+        const districthosp_validation = validateText($("#districtHospital").val());
+        const preopdiag_validation = validateText($("#preOpDiagnostic").val());
+        const plannedprc_validation = validateText($("#plannedProcedure").val());
+        const assurance_validation = validateText($("#assurance").val());
+        const accompanying_validation = validateText($("#accompanying").val());
+        const observation_validation = validateText($("#observation").val());
 
-        if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
-        else $("#operation-validation-error").html("");
-        if (!exitdate_validation) $("#exitdate-validation-error").html("<font color='red'>Invalid exit date</font>");
-        else $("#exitdate-validation-error").html("");
-        if (!destination_validation) $("#destination-validation-error").html("<font color='red'>Invalid destination</font>");
-        else $("#destination-validation-error").html("");
-        if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
-        else $("#comment-validation-error").html("");
+        if (!districthosp_validation) $("#districthosp-validation-error").html("<font color='red'>Invalid district hospital</font>");
+        else $("#districthosp-validation-error").html("");
+        if (!preopdiag_validation) $("#preopdiag-validation-error").html("<font color='red'>Invalid pre operation diagnostic</font>");
+        else $("#preopdiag-validation-error").html("");
+        if (!plannedprc_validation) $("#plannedprc-validation-error").html("<font color='red'>Invalid planned procedure</font>");
+        else $("#plannedprc-validation-error").html("");
+        if (!assurance_validation) $("#assurance-validation-error").html("<font color='red'>Out must not be empty</font>");
+        else $("#assurance-validation-error").html("");
+        if (!accompanying_validation) $("#accompanying-validation-error").html("<font color='red'>Invalid accompanying information</font>");
+        else $("#accompanying-validation-error").html("");
+        if (!observation_validation) $("#observation-validation-error").html("<font color='red'>Invalid observation</font>");
+        else $("#observation-validation-error").html("");
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
+        return districthosp_validation && preopdiag_validation && plannedprc_validation && assurance_validation && accompanying_validation && observation_validation;
     }
 
-    function savePacu() {
+    function updateOperation() {
         const patient = $("#patient").val();
-        const operation = $("#operation").val();
         const data = JSON.stringify({
-            exitDate: $("#exitDate").val(),
-            destination: $("#destination").val(),
-            observation: $("#observation").val()
+            districtHospital: $("#districtHospital").val(),
+            preOpDiagnostic: $("#preOpDiagnostic").val(),
+            plannedProcedure: $("#plannedProcedure").val(),
+            // caution: $("#caution").val(),
+            assurance: $("#assurance").val(),
+            accompanying: $("#accompanying").val(),
+            // provenance: $("#provenance").val(),
+            // transfer: $("#transfer").val(),
+            // received: $("#received").checked?1:0,
+            observed: $("#observation").val()
         });
         $.ajax({
-            url: `api/pacu?patient=${patient}&operation=${operation}`,
-            method: 'POST',
+            url: `api/operation/${getUrlQueryParamId()}?patient=${patient}`,
+            method: 'PUT',
             data: data,
             headers: {
                 'Content-Type': 'application/json',
@@ -264,9 +291,6 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#exitDate").val("");
-                $("#destination").val("");
-                $("#observation").val("");
             } else {
                 $("#response_success").hide();
                 $("#response_error").show();
@@ -284,7 +308,7 @@
 
     }
 
-    function loadPatients() {
+    function loadPatient() {
         $.ajax({
             url: "api/patients",
             method: 'GET',
@@ -301,31 +325,38 @@
         })
     }
 
-    function loadOperationByPatient(patient) {
+    function loadOperationById(){
+        const id = getUrlQueryParamId();
+        if(id==null || !validateNumber(id)) window.location='operations.html';
         $.ajax({
-            url: `api/operations/bypatient?patient=${patient}`,
+            url: `api/operation/${id}`,
             method: 'GET',
-            data: {},
-            dataType: 'json',
-            success: function (res) {
-                console.log(`Data len ${res.length}`);
-                var data = '';
-                for (var i = 0; i < res.length; i++) {
-                    data += `<option value=${res[i].id}>${res[i].plannedProcedure}</option>`;
-                }
-                $("#operation").html(data)
-            }
-        })
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result, textStatus, xhr) {
+            console.log(xhr.status);
+            $("#districtHospital").val(result.districtHospital);
+            $("#preOpDiagnostic").val(result.preOpDiagnostic);
+            $("#plannedProcedure").val(result.plannedProcedure);
+            $("#assurance").val(result.assurance);
+            $("#accompanying").val(result.accompanying);
+            $("#observation").val(result.observation);
+        }).fail(function (xhr, status) {
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+        });
+
     }
 
-    $("#btnAddPacu").click(function () {
-        if (validatePacu())
-            savePacu();
+
+    $("#btnUpdateOperation").click(function () {
+        if (validateOperations())
+            updateOperation();
     });
-    $("#patient").change(function () {
-        loadOperationByPatient($(this).val());
-    })
-    loadPatients();
+    loadPatient();
+    loadOperationById();
 </script>
 </body>
 

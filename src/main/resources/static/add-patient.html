@@ -15,13 +15,13 @@
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-<!--    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">-->
+    <!--    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">-->
     <link rel="stylesheet" href="js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -39,7 +39,7 @@
                         <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="images/logo-mini.svg" alt="logo" />
+                    <img src="images/logo-mini.svg" alt="logo"/>
                 </a>
             </div>
         </div>
@@ -47,10 +47,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-bs-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -62,10 +64,12 @@
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
         </div>
@@ -76,14 +80,14 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="patients.html">
-                        <i class="mdi mdi-grid-large icon-user"></i>
+                        <i class="mdi mdi-account-badge menu-icon"></i>
                         <span class="menu-title">Patients</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -102,23 +106,29 @@
                                     Record patient information
                                 </p>
                                 <form class="forms-sample">
-                                    <div id="response_error" class="alert alert-danger" style="display: none">Something went
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something
+                                        went
                                         wrong,can't add patient
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Patient added
+                                    <div id="response_success" class="alert alert-success" style="display: none">Patient
+                                        added
                                         successful
                                     </div>
                                     <div class="form-group">
                                         <label for="patientNames">Patient name</label>
-                                        <input type="text" class="form-control" id="patientNames" placeholder="Patient name">
+                                        <input type="text" class="form-control" id="patientNames"
+                                               placeholder="Patient name">
+                                        <div id="patient-names-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone number</label>
                                         <input type="number" class="form-control" id="phone" placeholder="Phone number">
+                                        <div id="phone-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="dob">Date of birth</label>
                                         <input type="date" class="form-control" id="dob" placeholder="Phone number">
+                                        <div id="dob-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Gender</label>
@@ -128,13 +138,16 @@
                                     <div class="form-group">
                                         <label for="province">Province</label>
                                         <input type="text" class="form-control" id="province" placeholder="Province">
+                                        <div id="province-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="district">District</label>
                                         <input type="text" class="form-control" id="district" placeholder="District">
+                                        <div id="district-validation-error"></div>
                                     </div>
-                                    <button type="button" id="btnAddPatient" class="btn btn-primary me-2">Register</button>
-                                    <a href="patients.html" class="btn btn-danger">Cancel</a>
+                                    <button type="button" id="btnAddPatient" class="btn btn-primary me-2">Register
+                                    </button>
+                                    <a href="patients.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -178,8 +191,31 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 <script>
+    function validatePatient() {
+        const name_validation = validateText($("#patientNames").val());
+        const phone_validation = validatePhoneNumber($("#phone").val());
+        const province_validation = validateText($("#province").val());
+        const district_validation = validateText($("#district").val());
+        const dob_validation = $("#dob").val() !== '';
+        if (!name_validation) $("#patient-names-validation-error").html("<font color='red'>Invalid patient name</font>")
+        else $("#patient-names-validation-error").html("");
+
+        if (!phone_validation) $("#phone-validation-error").html("<font color='red'>Invalid phone number</font>")
+        else $("#phone-validation-error").html("");
+
+        if (!province_validation) $("#province-validation-error").html("<font color='red'>Invalid province</font>")
+        else $("#province-validation-error").html("");
+
+        if (!district_validation) $("#district-validation-error").html("<font color='red'>Invalid district</font>")
+        else $("#district-validation-error").html("");
+
+        if (!dob_validation) $("#dob-validation-error").html("<font color='red'>Invalid date of birth</font>")
+        else $("#dob-validation-error").html("");
+        return name_validation && phone_validation && dob_validation && province_validation && district_validation;
+    }
 
     function savePatient() {
         const gender = $("#male").checked ? "Male" : "Female";
@@ -198,7 +234,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).done(function (result,textStatus,xhr) {
+        }).done(function (result, textStatus, xhr) {
             console.log(xhr.status);
             if (xhr.status === 200) {
                 $("#response_success").show();
@@ -217,7 +253,7 @@
                 $("#response_error").hide();
                 $("#response_success").hide();
             }, 7000);
-        }).fail(function(xhr,status){
+        }).fail(function (xhr, status) {
             console.log("Something went wrong")
             console.log(xhr.status);
             console.log(status);
@@ -227,7 +263,8 @@
 
     $("#btnAddPatient").click(function () {
         console.log("Button clicked")
-        savePatient();
+        if (validatePatient())
+            savePatient();
     });
 </script>
 </body>

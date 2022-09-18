@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,10 +26,21 @@ public class PharmacyOrdersService {
         pharmacyOrdersRepository.getPharmacyOrdersByPharmacy(pharmacy).forEach(orders::add);
         return orders;
     }
+    public PharmacyOrders getOrderById(String id) {
+        PharmacyOrders orders =  pharmacyOrdersRepository.findById(Integer.parseInt(id)).get();
+        return orders;
+    }
     public void addOrder(PharmacyOrders orders){
         pharmacyOrdersRepository.save(orders);
     }
     public void updatePharmacy(String id, PharmacyOrders orders){
-        pharmacyOrdersRepository.findById(Integer.parseInt(id));
+        PharmacyOrders pharmacy = pharmacyOrdersRepository.findById(Integer.parseInt(id)).get();
+        pharmacy.setUpdatedAt(new Date());
+        pharmacy.setPharmacy(orders.getPharmacy());
+        pharmacy.setNurse(orders.getNurse());
+        pharmacy.setPatient(orders.getPatient());
+        pharmacy.setKit(orders.getKit());
+        pharmacy.setDelivery(orders.getDelivery());
+        pharmacyOrdersRepository.save(pharmacy);
     }
 }

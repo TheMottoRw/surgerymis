@@ -23,6 +23,11 @@ public class PatientService {
         patientsRepository.findAll().forEach(patients::add);
         return patients;
     }
+    public Patients getPatientById(String id) {
+        Patients patients = null;
+        patients = patientsRepository.findById(Integer.parseInt(id)).get();
+        return patients;
+    }
     public void addPatient(Patients patient){
         SmsUtils smsUtils = new SmsUtils();
         patientsRepository.save(patient);

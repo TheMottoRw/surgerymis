@@ -23,6 +23,9 @@ public class PacuService {
         pacuRepository.findAll().forEach(pacu::add);
         return pacu;
     }
+    public Pacu getPacuById(String id) {
+        return pacuRepository.findById(Integer.parseInt(id)).get();
+    }
     public void addPacu(Pacu pacu){
         SmsUtils smsUtils = new SmsUtils();
         pacuRepository.save(pacu);
@@ -35,7 +38,13 @@ public class PacuService {
             ex.printStackTrace();
         }
     }
-    public void updatePacu(String id, Pacu pacu){
-        pacuRepository.findById(Integer.parseInt(id));
+    public void updatePacu(String id, Pacu pac){
+       Pacu pacu = pacuRepository.findById(Integer.parseInt(id)).get();
+       pacu.setPatient(pac.getPatient());
+       pacu.setOperation(pac.getOperation());
+       pacu.setExitDate(pac.getExitDate());
+       pacu.setDestination(pac.getDestination());
+       pacu.setObservation(pac.getObservation());
+       pacuRepository.save(pacu);
     }
 }

@@ -74,21 +74,20 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="users.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Users</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="pharmacy.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-pharmacy menu-icon"></i>
                         <span class="menu-title">Pharmacy</span>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="pharmacy-orders.html">
+                        <i class="mdi mdi-pill menu-icon"></i>
+                        <span class="menu-title">Medicine Distribution</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -159,9 +158,14 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 <script>
     $(document).ready(function () {
+        console.log(`Validate text: ${validateText("asdsa45")}`);
+        console.log(`Validate phone: ${validatePhoneNumber("0959434342")}`);
+        console.log(`Validate rwanda phone: ${validateRwandanPhoneNumber("2507846341180")}`);
+        console.log(`Validate email: ${validateEmail("h2.damn@g.co")}`);
         function loadPharmacy() {
             $.ajax({
                 url: "api/pharmacy",
@@ -177,6 +181,7 @@
                                     <td>${res[i].pharmacyName}</td>
                                     <td>${res[i].representedBy!=null?res[i].representedBy.name:"None"}</td>
                                     <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
+                                    <td><a class="btn btn-info btn-sm" href="update-pharmacy.html?id=${res[i].id}">Edit</a></td>
                                 </tr>`;
                     }
                     $("#pharmacy-data").html(data)

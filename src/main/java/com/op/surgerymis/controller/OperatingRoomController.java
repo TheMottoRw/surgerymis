@@ -26,12 +26,18 @@ public class OperatingRoomController {
     UsersRepository usersRepository;
 
 
-    @RequestMapping(method = RequestMethod.GET,value = "/api/oprooms")
-    public List<OperatingRoom> getAllOperatingRooms(){
+    @RequestMapping(method = RequestMethod.GET, value = "/api/oprooms")
+    public List<OperatingRoom> getAllOperatingRooms() {
         return operatingRoomService.getAllOperatingRoom();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/api/oproom")
-    public void addOperatingRoom(@RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String surgeon,@RequestParam String nurse){
+
+    @RequestMapping(method = RequestMethod.GET, value = "/api/oproom/{id}")
+    public OperatingRoom getOperatingRoomById(@PathVariable String id) {
+        return operatingRoomService.getOperatinRoomById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/api/oproom")
+    public void addOperatingRoom(@RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String surgeon, @RequestParam String nurse) {
         System.out.println(operatingRoom.getCleaning());
         Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
         Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
@@ -43,5 +49,19 @@ public class OperatingRoomController {
         operatingRoom.setNurse(nurses);
         operatingRoom.setCreatedAt(new Date());
         operatingRoomService.addOperatingRoom(operatingRoom);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/api/oproom/{id}")
+    public void addOperatingRoom(@PathVariable String id, @RequestBody OperatingRoom operatingRoom, @RequestParam String patient, @RequestParam String operation, @RequestParam String surgeon, @RequestParam String nurse) {
+        Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
+        Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
+        Users surgeons = usersRepository.findById(Integer.parseInt(surgeon)).get();
+        Users nurses = usersRepository.findById(Integer.parseInt(nurse)).get();
+        operatingRoom.setPatient(patients);
+        operatingRoom.setOperation(operations);
+        operatingRoom.setSurgeon(surgeons);
+        operatingRoom.setNurse(nurses);
+        operatingRoom.setCreatedAt(new Date());
+        operatingRoomService.updateOperatingRoom(id, operatingRoom);
     }
 }

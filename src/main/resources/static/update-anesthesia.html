@@ -125,7 +125,6 @@
                     </a>
                 </li>
             </ul>
-
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -135,15 +134,17 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Record pacu information
-                                </h4>
+                                <h4 class="card-title">Add new anesthesia information</h4>
+                                <p class="card-description">
+                                    Record anesthesia information
+                                </p>
                                 <form class="forms-sample">
                                     <div id="response_error" class="alert alert-danger" style="display: none">Something
                                         went
-                                        wrong,can't add pacu
+                                        wrong,can't add anesthesia information
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Pacu
-                                        added
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Anesthesia information updated
                                         successful
                                     </div>
                                     <div class="form-group">
@@ -152,33 +153,58 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
+                                        <label for="operation">Operation to be done</label>
                                         <select class="form-control" id="operation">
                                         </select>
                                         <div id="operation-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exitDate">Exit date</label>
-                                        <input type="date" class="form-control" id="exitDate" placeholder="Exit date">
-                                        <div id="exitdate-validation-error"></div>
+                                        <label for="anesthetist">Anesthetist</label>
+                                        <select class="form-control" id="anesthetist">
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="destination">Destination </label>
-                                        <input type="text" class="form-control" id="destination"
-                                               placeholder="Destination">
-                                        <div id="destination-validation-error"></div>
+                                        <label for="anesthesiaType">Anesthesia type</label>
+                                        <select type="text" class="form-control" id="anesthesiaType">
+                                            <option>Local</option>
+                                            <option>Regional</option>
+                                            <option>General</option>
+                                            <option>Cedation</option>
+                                        </select>
+
+                                    </div>
+                                    <!--                                    <div class="form-group">-->
+                                    <!--                                        <label for="anesthesiaDrugs">Anesthesia Drugs</label>-->
+                                    <!--                                        <textarea type="text" class="form-control" id="anesthesiaDrugs" rows="3">-->
+                                    <!--                                        </textarea>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="form-group">-->
+                                    <!--                                        <label for="opiods">Opiods</label>-->
+                                    <!--                                        <input type="text" class="form-control" id="opiods"/>-->
+                                    <!--                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="induction">Induction</label>
+                                        <input type="text" class="form-control" id="induction"/>
+                                        <div id="induction-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="observation">Comment</label>
-                                        <textarea type="text" class="form-control" id="observation"
-                                                  placeholder="Observation" rows="3">
-                                        </textarea>
-                                        <div id="comment-validation-error"></div>
-
-
+                                        <label for="operativeDuration">Operative duration</label>
+                                        <input type="text" class="form-control" id="operativeDuration"/>
+                                        <div id="operative-validation-error"></div>
                                     </div>
-                                    <button type="button" id="btnAddPacu" class="btn btn-primary me-2">Register</button>
-                                    <a href="pacu.html" class="btn btn-danger">Back</a>
+                                    <div class="form-group">
+                                        <label for="anesthesiaDuration">Anesthesia duration</label>
+                                        <input type="text" class="form-control" id="anesthesiaDuration"/>
+                                        <div id="anesthesia-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="postOpDisposition">Post operation disposition
+                                            <!--Aho ari bujye--></label>
+                                        <input type="checkbox" id="postOpDisposition"/>
+                                    </div>
+                                    <button type="button" id="btnUpdateAnesthesia" class="btn btn-primary me-2">Update
+                                    </button>
+                                    <a href="anesthesia.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -224,37 +250,40 @@
 <script src="helper/utils.js"></script>
 <script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
-
 <script>
-    function validatePacu() {
-        const operation_validation = validateNumber($("#operation").val());
-        const exitdate_validation = $("#exitDate").val()!=='';
-        const destination_validation = validateText($("#destination").val().trim());
-        const comment_validation = validateText($("#observation").val().trim());
+    function validateAnesthesia() {
+        const induction_validation = validateText($("#induction").val());
+        const operative_validation = validateText($("#operativeDuration").val());
+        const anesthesia_validation = validateText($("#anesthesiaDuration").val());
+        const operation_validation = $("#operation").val() !== '';
 
-        if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
+        if (!induction_validation) $("#induction-validation-error").html("<font color='red'>Invalid induction information</font>");
+        else $("#induction-validation-error").html("");
+        if (!operative_validation) $("#operative-validation-error").html("<font color='red'>Invalid operative information</font>");
+        else $("#operative-validation-error").html("");
+        if (!anesthesia_validation) $("#anesthesia-validation-error").html("<font color='red'>Invalid anesthesia duration information</font>");
+        else $("#anesthesia-validation-error").html("");
+        if (!operative_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
         else $("#operation-validation-error").html("");
-        if (!exitdate_validation) $("#exitdate-validation-error").html("<font color='red'>Invalid exit date</font>");
-        else $("#exitdate-validation-error").html("");
-        if (!destination_validation) $("#destination-validation-error").html("<font color='red'>Invalid destination</font>");
-        else $("#destination-validation-error").html("");
-        if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
-        else $("#comment-validation-error").html("");
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
+        return induction_validation && operative_validation && anesthesia_validation && operative_validation;
     }
 
-    function savePacu() {
-        const patient = $("#patient").val();
-        const operation = $("#operation").val();
+    function updateAnesthesia() {
+        const patient = $("#patient").val(),
+            operation = $("#operation").val(),
+            anesthetist = $("#anesthetist").val();
         const data = JSON.stringify({
-            exitDate: $("#exitDate").val(),
-            destination: $("#destination").val(),
-            observation: $("#observation").val()
+            anesthesiaType: $("#anesthesiaType").val(),
+            induction: $("#induction").val(),
+            // opiods: $("#opiods").val(),
+            operativeDuration: $("#operativeDuration").val(),//time of anesthesia (Igihe operation ikorerwa compared n'igihe ikinya kimara)
+            anesthesiaDuration: $("#anesthesiaDuration").val(),//default 1h30
+            postOpDisposition: $("#postOpDisposition").checked ? 1 : 0
         });
         $.ajax({
-            url: `api/pacu?patient=${patient}&operation=${operation}`,
-            method: 'POST',
+            url: `api/anesthesia/${getUrlQueryParamId()}?patient=${patient}&operation=${operation}&anesthetist=${anesthetist}`,
+            method: 'PUT',
             data: data,
             headers: {
                 'Content-Type': 'application/json',
@@ -264,9 +293,6 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#exitDate").val("");
-                $("#destination").val("");
-                $("#observation").val("");
             } else {
                 $("#response_success").hide();
                 $("#response_error").show();
@@ -284,7 +310,7 @@
 
     }
 
-    function loadPatients() {
+    function loadPatient() {
         $.ajax({
             url: "api/patients",
             method: 'GET',
@@ -297,6 +323,40 @@
                     data += `<option value=${res[i].id}>${res[i].patientNames}</option>`;
                 }
                 $("#patient").html(data)
+            }
+        })
+    }
+
+    function loadAnesthesiologist() {
+        $.ajax({
+            url: "api/users/find?userType=Anesthesiologist",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#anesthesiologist").html(data)
+            }
+        })
+    }
+
+    function loadAnesthetist() {
+        $.ajax({
+            url: "api/users/find?userType=Anesthetist",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#anesthetist").html(data)
             }
         })
     }
@@ -317,17 +377,41 @@
             }
         })
     }
+    function loadAnesthesiaById(){
+        const id = getUrlQueryParamId();
+        if(id==null || !validateNumber(id)) window.location='anesthesia.html';
+        $.ajax({
+            url: `api/anesthesia/${id}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result, textStatus, xhr) {
+            console.log(xhr.status);
+            $("#induction").val(result.induction);
+            $("#operativeDuration").val(result.operativeDuration);
+            $("#anesthesiaDuration").val(result.anesthesiaDuration);
+        }).fail(function (xhr, status) {
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+        });
 
-    $("#btnAddPacu").click(function () {
-        if (validatePacu())
-            savePacu();
+    }
+
+
+    $("#btnUpdateAnesthesia").click(function () {
+        if (validateAnesthesia())
+            updateAnesthesia();
     });
+    loadPatient();
+    loadAnesthesiologist();
+    loadAnesthetist();
     $("#patient").change(function () {
         loadOperationByPatient($(this).val());
     })
-    loadPatients();
+    loadAnesthesiaById();
 </script>
 </body>
-
 </html>
 

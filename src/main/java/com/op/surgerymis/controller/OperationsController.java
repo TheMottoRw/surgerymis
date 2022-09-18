@@ -27,6 +27,10 @@ public class OperationsController {
     public List<Operations> getAllOperations() {
         return operationsService.getAllOperations();
     }
+    @RequestMapping("/api/operation/{id}")
+    public Operations getOperationById(@PathVariable String id) {
+        return operationsService.getOperationById(id);
+    }
 
     @RequestMapping("/api/operations/bypatient")
     public List<Operations> getOperationsByPatient(@RequestParam String patient) {
@@ -39,6 +43,13 @@ public class OperationsController {
         operations.setPatient(patients);
         operations.setCreatedAt(Utils.getCurrentDate());
         operationsService.addOperation(operations);
+    }
+    @RequestMapping(method = RequestMethod.PUT, value = "/api/operation/{id}")
+    public void updateOperation(@PathVariable String id,@RequestBody Operations operations, @RequestParam String patient) {
+        Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
+        operations.setPatient(patients);
+        operations.setCreatedAt(Utils.getCurrentDate());
+        operationsService.updateOperation(id,operations);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/api/opfilter")

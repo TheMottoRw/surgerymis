@@ -14,13 +14,13 @@ public class SmsUtils {
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("recipients", recipient)
                 .addFormDataPart("message", message)
-                .addFormDataPart("sender", "+250784634118")
+                .addFormDataPart("sender", "+250788671144")
                 .build();
         Request request = new Request.Builder()
                 .url("https://www.intouchsms.co.rw/api/sendsms/.json")
                 .method("POST", body)
-                .addHeader("auth", "ManziRAsua:$ecure@Intouch!")
-                .addHeader("Authorization", "Basic TWFuemlSQXN1YTokZWN1cmVASW50b3VjaCE=")
+                .addHeader("auth", "Channy:Channy@Inema!")
+                .addHeader("Authorization", "Basic Q2hhbm55OkNoYW5ueUBJbmVtYSE=")
                 .build();
 
         Response response = client.newCall(request).execute();

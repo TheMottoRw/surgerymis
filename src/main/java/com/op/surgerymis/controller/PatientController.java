@@ -19,6 +19,10 @@ public class PatientController {
     public List<Patients> getAllPatients(){
         return patientService.getAllPatients();
     }
+    @RequestMapping(method=RequestMethod.GET,value = "/api/patient/{id}")
+    public Patients getPatientById(@PathVariable String id){
+        return patientService.getPatientById(id);
+    }
     @RequestMapping(method = RequestMethod.POST,value = "/api/patient")
     public void addPatient(@RequestBody Patients patient){
         System.out.println(patient.getPatientNames());

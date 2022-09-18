@@ -25,6 +25,10 @@ public class PacuController {
     public List<Pacu> getAllPacu(){
         return pacuService.getAllPacu();
     }
+    @RequestMapping(method = RequestMethod.GET,value = "/api/pacu/{id}")
+    public Pacu getPacuById(@PathVariable  String id){
+        return pacuService.getPacuById(id);
+    }
     @RequestMapping(method = RequestMethod.POST,value = "/api/pacu")
     public void addPacu(@RequestBody Pacu pacu, @RequestParam String patient,@RequestParam String operation){
         System.out.println(pacu.getDestination());
@@ -34,5 +38,15 @@ public class PacuController {
         pacu.setOperation(operations);
         pacu.setCreatedAt(new Date());
         pacuService.addPacu(pacu);
+    }
+    @RequestMapping(method = RequestMethod.PUT,value = "/api/pacu/{id}")
+    public void addPacu(@PathVariable String id,@RequestBody Pacu pacu, @RequestParam String patient,@RequestParam String operation){
+        System.out.println(pacu.getDestination());
+        Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
+        Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
+        pacu.setPatient(patients);
+        pacu.setOperation(operations);
+        pacu.setCreatedAt(new Date());
+        pacuService.updatePacu(id,pacu);
     }
 }
