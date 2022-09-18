@@ -34,7 +34,7 @@
                 </button>
             </div>
             <div>
-                <a class="navbar-brand brand-logo" href="dashboard.html">
+                <a class="navbar-brand brand-logo" href="index.html">
                     <h4><img src="images/surgerymis-logo.png" alt="logo" class="img img-thumbnail"/>
                         <font color="black">Surger MIS</font></h4>
                 </a>
@@ -120,7 +120,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-logout menu-icon"></i>
+                        <i class="mdi mdi--logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -135,15 +135,17 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Record pacu information
-                                </h4>
+                                <h4 class="card-title">Add new operating room information</h4>
+                                <p class="card-description">
+                                    Record operating room information
+                                </p>
                                 <form class="forms-sample">
                                     <div id="response_error" class="alert alert-danger" style="display: none">Something
                                         went
-                                        wrong,can't add pacu
+                                        wrong,can't add operating room details
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Pacu
-                                        added
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Operating room details updated
                                         successful
                                     </div>
                                     <div class="form-group">
@@ -152,33 +154,73 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
+                                        <label for="operation">Operation to be done</label>
                                         <select class="form-control" id="operation">
                                         </select>
                                         <div id="operation-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exitDate">Exit date</label>
-                                        <input type="date" class="form-control" id="exitDate" placeholder="Exit date">
-                                        <div id="exitdate-validation-error"></div>
+                                        <label for="surgeon">Surgeon</label>
+                                        <select class="form-control" id="surgeon">
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="destination">Destination </label>
-                                        <input type="text" class="form-control" id="destination"
-                                               placeholder="Destination">
-                                        <div id="destination-validation-error"></div>
+                                        <label for="nurse">Nurse</label>
+                                        <select class="form-control" id="nurse">
+                                        </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="observation">Comment</label>
-                                        <textarea type="text" class="form-control" id="observation"
-                                                  placeholder="Observation" rows="3">
+                                        <label for="intraOpDiagnosis">Intra operation diagnosis</label>
+                                        <textarea class="form-control" id="intraOpDiagnosis" cols="3"></textarea>
+                                        <div id="intraopdiag-validation-error"></div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="opProcedure">Operation procedure</label>
+                                        <textarea class="form-control" id="opProcedure"
+                                                  placeholder="Operation procedure to be followed" cols="3">
                                         </textarea>
-                                        <div id="comment-validation-error"></div>
-
-
+                                        <div id="opprocedure-validation-error"></div>
                                     </div>
-                                    <button type="button" id="btnAddPacu" class="btn btn-primary me-2">Register</button>
-                                    <a href="pacu.html" class="btn btn-danger">Back</a>
+                                    <div class="form-group">
+                                        <label for="emergenceorentrance">Emergency or Entrance</label>
+                                        <select class="form-control" id="emergenceorentrance">
+                                            <option>Emergency</option>
+                                            <option>Entrance</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dressing">Dressing</label>
+                                        <input type="text" class="form-control" id="dressing">
+                                        <div id="dressing-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="out">Out</label>
+                                        <input type="date" class="form-control" id="out">
+                                        <div id="out-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cleaning">Cleaning</label>
+                                        <input type="text" class="form-control" id="cleaning">
+                                        <div id="cleaning-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="operationStatus">Operation status</label>
+                                        <select type="text" class="form-control" id="operationStatus">
+                                            <option>Major</option>
+                                            <option>Intermediate</option>
+                                            <option>Minor</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="observation">Observation</label>
+                                        <input type="text" class="form-control" id="observation">
+                                        <div id="observation-validation-error"></div>
+                                    </div>
+                                    <button type="button" id="btnUpdateOperatingRoom" class="btn btn-primary me-2">
+                                        Update
+                                    </button>
+                                    <a href="operating-room.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -224,37 +266,52 @@
 <script src="helper/utils.js"></script>
 <script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
-
 <script>
-    function validatePacu() {
+    function validateOperatingRoom() {
+        const intraopdiag_validation = validateText($("#intraOpDiagnosis").val().trim());
+        const opprocedure_validation = validateText($("#opProcedure").val().trim());
+        const dressing_validation = validateText($("#dressing").val());
+        const out_validation = $("#out").val() !== '';
+        const cleaning_validation = validateText($("#cleaning").val().trim());
+        const observation_validation = validateText($("#observation").val());
         const operation_validation = validateNumber($("#operation").val());
-        const exitdate_validation = $("#exitDate").val()!=='';
-        const destination_validation = validateText($("#destination").val().trim());
-        const comment_validation = validateText($("#observation").val().trim());
 
+        if (!intraopdiag_validation) $("#intraopdiag-validation-error").html("<font color='red'>Invalid intraoperation diagnostics</font>");
+        else $("#intraopdiag-validation-error").html("");
+        if (!opprocedure_validation) $("#opprocedure-validation-error").html("<font color='red'>Invalid operation procedure record</font>");
+        else $("#opprocedure-validation-error").html("");
+        if (!dressing_validation) $("#dressing-validation-error").html("<font color='red'>Invalid dressing information</font>");
+        else $("#dressing-validation-error").html("");
+        if (!out_validation) $("#out-validation-error").html("<font color='red'>Out must not be empty</font>");
+        else $("#out-validation-error").html("");
+        if (!cleaning_validation) $("#cleaning-validation-error").html("<font color='red'>Invalid cleaning information</font>");
+        else $("#cleaning-validation-error").html("");
+        if (!observation_validation) $("#observation-validation-error").html("<font color='red'>Observation must not be empty</font>");
+        else $("#observation-validation-error").html("");
         if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
         else $("#operation-validation-error").html("");
-        if (!exitdate_validation) $("#exitdate-validation-error").html("<font color='red'>Invalid exit date</font>");
-        else $("#exitdate-validation-error").html("");
-        if (!destination_validation) $("#destination-validation-error").html("<font color='red'>Invalid destination</font>");
-        else $("#destination-validation-error").html("");
-        if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
-        else $("#comment-validation-error").html("");
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
+        return intraopdiag_validation && opprocedure_validation && dressing_validation && out_validation && cleaning_validation && observation_validation && operation_validation;
     }
 
-    function savePacu() {
-        const patient = $("#patient").val();
-        const operation = $("#operation").val();
+    function updateOperatingRoom() {
+        const patient = $("#patient").val(),
+            operation = $("#operation").val(),
+            surgeon = $("#surgeon").val(),
+            nurse = $("#nurse").val();
         const data = JSON.stringify({
-            exitDate: $("#exitDate").val(),
-            destination: $("#destination").val(),
+            intraOpDiagnosis: $("#intraOpDiagnosis").val(),
+            opProcedure: $("#opProcedure").val(),
+            operationStatus: $("#operationStatus").val(),
+            emergenceOrEntrance: $("#emergenceorentrance").val(),
+            dressing: $("#dressing").val(),
+            out_: $("#out").val(),
+            cleaning: $("#cleaning").val(),
             observation: $("#observation").val()
         });
         $.ajax({
-            url: `api/pacu?patient=${patient}&operation=${operation}`,
-            method: 'POST',
+            url: `api/oproom/${getUrlQueryParamId()}?patient=${patient}&operation=${operation}&surgeon=${surgeon}&nurse=${nurse}`,
+            method: 'PUT',
             data: data,
             headers: {
                 'Content-Type': 'application/json',
@@ -264,9 +321,6 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#exitDate").val("");
-                $("#destination").val("");
-                $("#observation").val("");
             } else {
                 $("#response_success").hide();
                 $("#response_error").show();
@@ -284,7 +338,7 @@
 
     }
 
-    function loadPatients() {
+    function loadPatient() {
         $.ajax({
             url: "api/patients",
             method: 'GET',
@@ -297,6 +351,40 @@
                     data += `<option value=${res[i].id}>${res[i].patientNames}</option>`;
                 }
                 $("#patient").html(data)
+            }
+        })
+    }
+
+    function loadSurgeon() {
+        $.ajax({
+            url: "api/users/find?userType=Surgeon",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#surgeon").html(data)
+            }
+        })
+    }
+
+    function loadNurses() {
+        $.ajax({
+            url: "api/users/find?userType=Nurse",
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                for (var i = 0; i < res.length; i++) {
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
+                }
+                $("#nurse").html(data)
             }
         })
     }
@@ -317,15 +405,44 @@
             }
         })
     }
+    function loadOperatingRoomById(){
+        const id = getUrlQueryParamId();
+        if(id==null || !validateNumber(id)) window.location='operating-room.html';
+        $.ajax({
+            url: `api/oproom/${id}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result, textStatus, xhr) {
+            console.log(xhr.status);
+            $("#intraOpDiagnosis").val(result.intraOpDiagnosis);
+            $("#opProcedure").val(result.opProcedure);
+            $("#dressing").val(result.dressing);
+            $("#out").val(result.out_);
+            $("#cleaning").val(result.cleaning);
+            $("#observation").val(result.observation);
 
-    $("#btnAddPacu").click(function () {
-        if (validatePacu())
-            savePacu();
+        }).fail(function (xhr, status) {
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+        });
+
+    }
+
+
+    $("#btnUpdateOperatingRoom").click(function () {
+        if (validateOperatingRoom())
+            updateOperatingRoom();
     });
+    loadPatient();
+    loadSurgeon();
+    loadNurses();
     $("#patient").change(function () {
         loadOperationByPatient($(this).val());
     })
-    loadPatients();
+    loadOperatingRoomById();
 </script>
 </body>
 

@@ -42,15 +42,22 @@ function formatDate(str) {
     return d.getFullYear() + "-" + (d.getMonth() + 1 < 10 ? "0" + (d.getMonth() + 1) : d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getDate();
 }
 
+function getUrlQueryParamId() {
+    var pageUrl = document.documentURI,
+        id = pageUrl.indexOf("?") !== -1 ? pageUrl.split("?")[1].split("=")[1] : null;
+    return id;
+}
+
 function manageMenu() {
     var is_allowed = true;
     var user_role = localStorage.getItem("surgerymis_user_type"),
-        pageArr = document.documentURI.split("/"),
+        pageUrl = document.documentURI,
+        pageArr = pageUrl.indexOf("?") !== -1 ? pageUrl.split("?")[0].split("/") : pageUrl.split("/"),
         page = pageArr[pageArr.length - 1];
 
-    var admin_pages = ["users.html", "add-user.html", "add-pharmacy.html", "pharmacy.html"],
-        receptionist_pages = ["patients.html", "add-patient.html"],
-        pharmacist_pages = ["pharmacy-orders.html", "add-pharmacy-orders.html"]
+    var admin_pages = ["users.html", "add-user.html", "update-user.html"],
+        receptionist_pages = ["patients.html", "add-patient.html", "update-patient.html"],
+        pharmacist_pages = ["add-pharmacy.html", "pharmacy.html","update-pharmacy.html","pharmacy-orders.html", "add-pharmacy-orders.html", "update-pharmacy-orders.html"]
     console.log(user_role);
     switch (user_role) {
         case 'Admin':

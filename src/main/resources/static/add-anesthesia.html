@@ -21,7 +21,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -39,7 +39,7 @@
                         <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="images/logo-mini.svg" alt="logo" />
+                    <img src="images/logo-mini.svg" alt="logo"/>
                 </a>
             </div>
         </div>
@@ -47,10 +47,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-bs-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -62,10 +64,12 @@
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
         </div>
@@ -76,27 +80,27 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="dashboard.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="anesthesia.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-console-line menu-icon"></i>
                         <span class="menu-title">Anesthesia</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="operating-room.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-hospital-building menu-icon"></i>
                         <span class="menu-title">Operating room</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="operations.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-garage menu-icon"></i>
                         <span class="menu-title">Operations</span>
                     </a>
                 </li>
@@ -104,14 +108,19 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="pacu.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-bed-empty menu-icon"></i>
                         <span class="menu-title">Pacu</span>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="report.html">
+                        <i class="mdi mdi-printer menu-icon"></i>
+                        <span class="menu-title">Report</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -130,25 +139,28 @@
                                     Record anesthesia information
                                 </p>
                                 <form class="forms-sample">
-                                    <div id="response_error" class="alert alert-danger" style="display: none">Something went
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something
+                                        went
                                         wrong,can't add anesthesia information
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Anesthesia information added
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Anesthesia information added
                                         successful
                                     </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
-                                        <select  class="form-control" id="patient">
+                                        <select class="form-control" id="patient">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="operation">Operation to be done</label>
-                                        <select  class="form-control" id="operation">
+                                        <select class="form-control" id="operation">
                                         </select>
+                                        <div id="operation-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="anesthetist">Anesthetist</label>
-                                        <select  class="form-control" id="anesthetist">
+                                        <select class="form-control" id="anesthetist">
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -161,33 +173,38 @@
                                         </select>
 
                                     </div>
-<!--                                    <div class="form-group">-->
-<!--                                        <label for="anesthesiaDrugs">Anesthesia Drugs</label>-->
-<!--                                        <textarea type="text" class="form-control" id="anesthesiaDrugs" rows="3">-->
-<!--                                        </textarea>-->
-<!--                                    </div>-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label for="opiods">Opiods</label>-->
-<!--                                        <input type="text" class="form-control" id="opiods"/>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="form-group">-->
+                                    <!--                                        <label for="anesthesiaDrugs">Anesthesia Drugs</label>-->
+                                    <!--                                        <textarea type="text" class="form-control" id="anesthesiaDrugs" rows="3">-->
+                                    <!--                                        </textarea>-->
+                                    <!--                                    </div>-->
+                                    <!--                                    <div class="form-group">-->
+                                    <!--                                        <label for="opiods">Opiods</label>-->
+                                    <!--                                        <input type="text" class="form-control" id="opiods"/>-->
+                                    <!--                                    </div>-->
                                     <div class="form-group">
                                         <label for="induction">Induction</label>
-                                        <input type="text" class="form-control" id="induction" />
+                                        <input type="text" class="form-control" id="induction"/>
+                                        <div id="induction-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="operativeDuration">Operative duration</label>
                                         <input type="text" class="form-control" id="operativeDuration"/>
+                                        <div id="operative-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="anesthesiaDuration">Anesthesia duration</label>
-                                        <input type="text" class="form-control" id="anesthesiaDuration" />
+                                        <input type="text" class="form-control" id="anesthesiaDuration"/>
+                                        <div id="anesthesia-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="postOpDisposition">Post operation disposition <!--Aho ari bujye--></label>
+                                        <label for="postOpDisposition">Post operation disposition
+                                            <!--Aho ari bujye--></label>
                                         <input type="checkbox" id="postOpDisposition"/>
                                     </div>
-                                    <button type="button" id="btnAddAnesthesia" class="btn btn-primary me-2">Register</button>
-                                    <a href="anesthesia.html" class="btn btn-danger">Cancel</a>
+                                    <button type="button" id="btnAddAnesthesia" class="btn btn-primary me-2">Register
+                                    </button>
+                                    <a href="anesthesia.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -231,8 +248,27 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 <script>
+    function validateAnesthesia() {
+        const induction_validation = validateText($("#induction").val());
+        const operative_validation = validateText($("#operativeDuration").val());
+        const anesthesia_validation = validateText($("#anesthesiaDuration").val());
+        const operation_validation = $("#operation").val() !== '';
+
+        if (!induction_validation) $("#induction-validation-error").html("<font color='red'>Invalid induction information</font>");
+        else $("#induction-validation-error").html("");
+        if (!operative_validation) $("#operative-validation-error").html("<font color='red'>Invalid operative information</font>");
+        else $("#operative-validation-error").html("");
+        if (!anesthesia_validation) $("#anesthesia-validation-error").html("<font color='red'>Invalid anesthesia duration information</font>");
+        else $("#anesthesia-validation-error").html("");
+        if (!operative_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
+        else $("#operation-validation-error").html("");
+
+        return induction_validation && operative_validation && anesthesia_validation && operative_validation;
+    }
+
     function saveAnesthesia() {
         const patient = $("#patient").val(),
             operation = $("#operation").val(),
@@ -243,7 +279,7 @@
             // opiods: $("#opiods").val(),
             operativeDuration: $("#operativeDuration").val(),//time of anesthesia (Igihe operation ikorerwa compared n'igihe ikinya kimara)
             anesthesiaDuration: $("#anesthesiaDuration").val(),//default 1h30
-            postOpDisposition: $("#postOpDisposition").checked?1:0
+            postOpDisposition: $("#postOpDisposition").checked ? 1 : 0
         });
         $.ajax({
             url: `api/anesthesia?patient=${patient}&operation=${operation}&anesthetist=${anesthetist}`,
@@ -252,7 +288,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).done(function (result,textStatus,xhr) {
+        }).done(function (result, textStatus, xhr) {
             console.log(xhr.status);
             if (xhr.status === 200) {
                 $("#response_success").show();
@@ -271,7 +307,7 @@
                 $("#response_error").hide();
                 $("#response_success").hide();
             }, 7000);
-        }).fail(function(xhr,status){
+        }).fail(function (xhr, status) {
             console.log("Something went wrong")
             console.log(xhr.status);
             console.log(status);
@@ -312,6 +348,7 @@
             }
         })
     }
+
     function loadAnesthetist() {
         $.ajax({
             url: "api/users/find?userType=Anesthetist",
@@ -328,6 +365,7 @@
             }
         })
     }
+
     function loadOperationByPatient(patient) {
         $.ajax({
             url: `api/operations/bypatient?patient=${patient}`,
@@ -346,12 +384,13 @@
     }
 
     $("#btnAddAnesthesia").click(function () {
-        saveAnesthesia();
+        if (validateAnesthesia())
+            saveAnesthesia();
     });
     loadPatient();
     loadAnesthesiologist();
     loadAnesthetist();
-    $("#patient").change(function(){
+    $("#patient").change(function () {
         loadOperationByPatient($(this).val());
     })
 </script>

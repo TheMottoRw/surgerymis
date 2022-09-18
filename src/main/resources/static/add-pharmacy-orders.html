@@ -21,7 +21,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -39,7 +39,7 @@
                         <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="images/logo-mini.svg" alt="logo" />
+                    <img src="images/logo-mini.svg" alt="logo"/>
                 </a>
             </div>
         </div>
@@ -47,10 +47,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-bs-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -62,10 +64,12 @@
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
         </div>
@@ -74,15 +78,21 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="pharmacy.html">
+                        <i class="mdi mdi-pharmacy menu-icon"></i>
+                        <span class="menu-title">Pharmacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacy-orders.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-pill menu-icon"></i>
                         <span class="menu-title">Medicine Distribution</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -101,33 +111,38 @@
                                     Record new medicine distributed
                                 </p>
                                 <form class="forms-sample">
-                                    <div id="response_error" class="alert alert-danger" style="display: none">Something went
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something
+                                        went
                                         wrong,can't add an order
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Order added
+                                    <div id="response_success" class="alert alert-success" style="display: none">Order
+                                        added
                                         successful
                                     </div>
 
                                     <div class="form-group">
                                         <label for="patient">Nurse</label>
-                                        <select  class="form-control" id="nurse">
+                                        <select class="form-control" id="nurse">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
-                                        <select  class="form-control" id="patient">
+                                        <select class="form-control" id="patient">
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="kit">Kit</label>
                                         <input type="text" class="form-control" id="kit">
+                                        <div id="kit-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="delivery">Delivery </label><!-- Pharmacy agent-->
                                         <input type="text" class="form-control" id="delivery">
+                                        <div id="delivery-validation-error"></div>
                                     </div>
-                                    <button type="button" id="btnAddOrder" class="btn btn-primary me-2">Register</button>
-                                    <a href="pharmacy-orders.html" class="btn btn-danger">Cancel</a>
+                                    <button type="button" id="btnAddOrder" class="btn btn-primary me-2">Register
+                                    </button>
+                                    <a href="pharmacy-orders.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -171,10 +186,22 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 <script>
+    function validatePharmacyOrder() {
+        const kit_validation = validateText($("#kit").val());
+        const delivery_validation = validateText($("#delivery").val());
+        if (!kit_validation) $("#kit-validation-error").html("<font color='red'>Invalid kit information</font>");
+        else $("#kit-validation-error").html("");
+        if (!delivery_validation) $("#delivery-validation-error").html("<font color='red'>Invalid delivery information</font>");
+        else $("#delivery-validation-error").html("");
+        return kit_validation && delivery_validation;
+    }
+
     function saveOrder() {
-        const patient = $("#patient").val(),nurse=$("#nurse").val(),pharmacy=localStorage.getItem("surgerymis_user_id");
+        const patient = $("#patient").val(), nurse = $("#nurse").val(),
+            pharmacy = localStorage.getItem("surgerymis_user_id");
         const data = JSON.stringify({
             kit: $("#kit").val(),
             delivery: $("#delivery").val()
@@ -186,7 +213,7 @@
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).done(function (result,textStatus,xhr) {
+        }).done(function (result, textStatus, xhr) {
             console.log(xhr.status);
             if (xhr.status === 200) {
                 $("#response_success").show();
@@ -202,7 +229,7 @@
                 $("#response_error").hide();
                 $("#response_success").hide();
             }, 7000);
-        }).fail(function(xhr,status){
+        }).fail(function (xhr, status) {
             console.log("Something went wrong")
             console.log(xhr.status);
             console.log(status);
@@ -226,6 +253,7 @@
             }
         })
     }
+
     function loadNurses() {
         $.ajax({
             url: "api/users/find?userType=Nurse",
@@ -244,7 +272,8 @@
     }
 
     $("#btnAddOrder").click(function () {
-        saveOrder();
+        if (validatePharmacyOrder())
+            saveOrder();
     });
     loadPatients();
     loadNurses();

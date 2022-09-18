@@ -76,14 +76,14 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="patients.html">
-                        <i class="mdi mdi-grid-large icon-user"></i>
+                        <i class="mdi mdi-account-badge menu-icon"></i>
                         <span class="menu-title">Patients</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -110,6 +110,7 @@
                                             <th>Date of birth</th>
                                             <th>Gender</th>
                                             <th>Created</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody id="patients-data">
@@ -179,6 +180,7 @@
                                     <td>${res[i].dob!==null?res[i].dob.replace('T',' ').substring(0,16):"NA"}</td>
                                     <td>${res[i].gender}</td>
                                     <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
+                                    <td><a class="btn btn-info btn-sm" href="update-patient.html?id=${res[i].id}">Edit</a> </td>
                                 </tr>`;
                     }
                     $("#patients-data").html(data)

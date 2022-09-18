@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Pre&Post Surgery MIS </title>
+    <title>Pre&Post Surgery MIS</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="vendors/feather/feather.css">
     <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
@@ -77,47 +77,19 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
+                    <a class="nav-link" href="pharmacy.html">
+                        <i class="mdi mdi-pharmacy menu-icon"></i>
+                        <span class="menu-title">Pharmacy</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="anesthesia.html">
-                        <i class="mdi mdi-console-line menu-icon"></i>
-                        <span class="menu-title">Anesthesia</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="operating-room.html">
-                        <i class="mdi mdi-hospital-building menu-icon"></i>
-                        <span class="menu-title">Operating room</span>
+                    <a class="nav-link" href="pharmacy-orders.html">
+                        <i class="mdi mdi-pill menu-icon"></i>
+                        <span class="menu-title">Medicine Distribution</span>
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="operations.html">
-                        <i class="mdi mdi-garage menu-icon"></i>
-                        <span class="menu-title">Operations</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="pacu.html">
-                        <i class="mdi mdi-bed-empty menu-icon"></i>
-                        <span class="menu-title">Pacu</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="report.html">
-                        <i class="mdi mdi-printer menu-icon"></i>
-                        <span class="menu-title">Report</span>
-                    </a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
                         <i class="mdi mdi-logout menu-icon"></i>
@@ -125,7 +97,6 @@
                     </a>
                 </li>
             </ul>
-
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -135,16 +106,24 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Record pacu information
-                                </h4>
+                                <h4 class="card-title">Add new distribution</h4>
+                                <p class="card-description">
+                                    Record new medicine distributed
+                                </p>
                                 <form class="forms-sample">
                                     <div id="response_error" class="alert alert-danger" style="display: none">Something
                                         went
-                                        wrong,can't add pacu
+                                        wrong,can't add an order
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Pacu
-                                        added
+                                    <div id="response_success" class="alert alert-success" style="display: none">Order
+                                        updated
                                         successful
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="patient">Nurse</label>
+                                        <select class="form-control" id="nurse">
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="patient">Patient</label>
@@ -152,33 +131,18 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="operation">Operation</label>
-                                        <select class="form-control" id="operation">
-                                        </select>
-                                        <div id="operation-validation-error"></div>
+                                        <label for="kit">Kit</label>
+                                        <input type="text" class="form-control" id="kit">
+                                        <div id="kit-validation-error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exitDate">Exit date</label>
-                                        <input type="date" class="form-control" id="exitDate" placeholder="Exit date">
-                                        <div id="exitdate-validation-error"></div>
+                                        <label for="delivery">Delivery </label><!-- Pharmacy agent-->
+                                        <input type="text" class="form-control" id="delivery">
+                                        <div id="delivery-validation-error"></div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="destination">Destination </label>
-                                        <input type="text" class="form-control" id="destination"
-                                               placeholder="Destination">
-                                        <div id="destination-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="observation">Comment</label>
-                                        <textarea type="text" class="form-control" id="observation"
-                                                  placeholder="Observation" rows="3">
-                                        </textarea>
-                                        <div id="comment-validation-error"></div>
-
-
-                                    </div>
-                                    <button type="button" id="btnAddPacu" class="btn btn-primary me-2">Register</button>
-                                    <a href="pacu.html" class="btn btn-danger">Back</a>
+                                    <button type="button" id="btnAddOrder" class="btn btn-primary me-2">Register
+                                    </button>
+                                    <a href="pharmacy-orders.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -224,37 +188,53 @@
 <script src="helper/utils.js"></script>
 <script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
-
 <script>
-    function validatePacu() {
-        const operation_validation = validateNumber($("#operation").val());
-        const exitdate_validation = $("#exitDate").val()!=='';
-        const destination_validation = validateText($("#destination").val().trim());
-        const comment_validation = validateText($("#observation").val().trim());
+    function validatePharmacyOrder() {
+        const kit_validation = validateText($("#kit").val());
+        const delivery_validation = validateText($("#delivery").val());
+        if (!kit_validation) $("#kit-validation-error").html("<font color='red'>Invalid kit information</font>");
+        else $("#kit-validation-error").html("");
+        if (!delivery_validation) $("#delivery-validation-error").html("<font color='red'>Invalid delivery information</font>");
+        else $("#delivery-validation-error").html("");
+        return kit_validation && delivery_validation;
+    }
+    function loadPharmacOrderyById(){
+        const id = getUrlQueryParamId();
+        if(id==null || !validateNumber(id)) window.location='pharmacy-orders.html';
+        $.ajax({
+            url: `api/order/${id}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result, textStatus, xhr) {
+            console.log(xhr.status);
+            $("#response_success").show();
+            $("#response_error").hide();
 
-        if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
-        else $("#operation-validation-error").html("");
-        if (!exitdate_validation) $("#exitdate-validation-error").html("<font color='red'>Invalid exit date</font>");
-        else $("#exitdate-validation-error").html("");
-        if (!destination_validation) $("#destination-validation-error").html("<font color='red'>Invalid destination</font>");
-        else $("#destination-validation-error").html("");
-        if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
-        else $("#comment-validation-error").html("");
+            setTimeout(function () {
+                $("#response_error").hide();
+                $("#response_success").hide();
+            }, 7000);
+        }).fail(function (xhr, status) {
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+        });
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
     }
 
-    function savePacu() {
-        const patient = $("#patient").val();
-        const operation = $("#operation").val();
+
+    function updateOrder() {
+        const patient = $("#patient").val(), nurse = $("#nurse").val(),
+            pharmacy = localStorage.getItem("surgerymis_user_id");
         const data = JSON.stringify({
-            exitDate: $("#exitDate").val(),
-            destination: $("#destination").val(),
-            observation: $("#observation").val()
+            kit: $("#kit").val(),
+            delivery: $("#delivery").val()
         });
         $.ajax({
-            url: `api/pacu?patient=${patient}&operation=${operation}`,
-            method: 'POST',
+            url: `api/order/${getUrlQueryParamId()}?patient=${patient}&pharmacy=${pharmacy}&nurse=${nurse}`,
+            method: 'PUT',
             data: data,
             headers: {
                 'Content-Type': 'application/json',
@@ -264,9 +244,6 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#exitDate").val("");
-                $("#destination").val("");
-                $("#observation").val("");
             } else {
                 $("#response_success").hide();
                 $("#response_error").show();
@@ -301,9 +278,9 @@
         })
     }
 
-    function loadOperationByPatient(patient) {
+    function loadNurses() {
         $.ajax({
-            url: `api/operations/bypatient?patient=${patient}`,
+            url: "api/users/find?userType=Nurse",
             method: 'GET',
             data: {},
             dataType: 'json',
@@ -311,21 +288,20 @@
                 console.log(`Data len ${res.length}`);
                 var data = '';
                 for (var i = 0; i < res.length; i++) {
-                    data += `<option value=${res[i].id}>${res[i].plannedProcedure}</option>`;
+                    data += `<option value=${res[i].id}>${res[i].name}</option>`;
                 }
-                $("#operation").html(data)
+                $("#nurse").html(data)
             }
         })
     }
 
-    $("#btnAddPacu").click(function () {
-        if (validatePacu())
-            savePacu();
+    $("#btnAddOrder").click(function () {
+        if (validatePharmacyOrder())
+            updateOrder();
     });
-    $("#patient").change(function () {
-        loadOperationByPatient($(this).val());
-    })
     loadPatients();
+    loadNurses();
+    loadPharmacOrderyById();
 </script>
 </body>
 

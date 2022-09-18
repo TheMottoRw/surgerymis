@@ -3,6 +3,7 @@ package com.op.surgerymis.service;
 import com.op.surgerymis.helpers.Utils;
 import com.op.surgerymis.models.Operations;
 import com.op.surgerymis.models.Patients;
+import com.op.surgerymis.models.Pharmacy;
 import com.op.surgerymis.repository.OperationsRepository;
 import com.op.surgerymis.repository.PatientsRepository;
 import okhttp3.internal.Util;
@@ -27,6 +28,9 @@ public class OperationsService {
         operationsRepository.findAll().forEach(operations::add);
         return operations;
     }
+    public Operations getOperationById(String id) {
+        return operationsRepository.findById(Integer.parseInt(id)).get();
+    }
     public List<Operations> getOperationsByPatient(String pat) {
         List<Operations> operations = new ArrayList<>();
         Patients patient = patientsRepository.findById(Integer.parseInt(pat)).get();
@@ -37,7 +41,16 @@ public class OperationsService {
         operationsRepository.save(operations);
     }
     public void updateOperation(String id, Operations operations){
-        operationsRepository.findById(Integer.parseInt(id));
+        Operations ops = operationsRepository.findById(Integer.parseInt(id)).get();
+        ops.setUpdatedAt(new Date());
+        ops.setPatient(operations.getPatient());
+        ops.setDistrictHospital(operations.getDistrictHospital());
+        ops.setPreOpDiagnostic(operations.getPreOpDiagnostic());
+        ops.setPlannedProcedure(operations.getPlannedProcedure());
+        ops.setAssurance(operations.getAssurance());
+        ops.setAccompanying(operations.getAccompanying());
+        ops.setObserved(operations.getObservation());
+        operationsRepository.save(ops);
     }
     public List<Operations> filterOperationByDate(String start, String end){
         String dStart = start+" 00:00:00";

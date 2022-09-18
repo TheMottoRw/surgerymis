@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+    <!--    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">-->
     <link rel="stylesheet" href="js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
@@ -77,45 +77,10 @@
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
-
                 <li class="nav-item">
-                    <a class="nav-link" href="dashboard.html">
-                        <i class="mdi mdi-chart-bar menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="anesthesia.html">
-                        <i class="mdi mdi-console-line menu-icon"></i>
-                        <span class="menu-title">Anesthesia</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="operating-room.html">
-                        <i class="mdi mdi-hospital-building menu-icon"></i>
-                        <span class="menu-title">Operating room</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="operations.html">
-                        <i class="mdi mdi-garage menu-icon"></i>
-                        <span class="menu-title">Operations</span>
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a class="nav-link" href="pacu.html">
-                        <i class="mdi mdi-bed-empty menu-icon"></i>
-                        <span class="menu-title">Pacu</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="report.html">
-                        <i class="mdi mdi-printer menu-icon"></i>
-                        <span class="menu-title">Report</span>
+                    <a class="nav-link" href="users.html">
+                        <i class="mdi mdi-account-badge menu-icon"></i>
+                        <span class="menu-title">Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -125,7 +90,6 @@
                     </a>
                 </li>
             </ul>
-
         </nav>
         <!-- partial -->
         <div class="main-panel">
@@ -135,50 +99,49 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Record pacu information
-                                </h4>
+                                <h4 class="card-title">Add new user</h4>
+                                <p class="card-description">
+                                    Record user information
+                                </p>
                                 <form class="forms-sample">
                                     <div id="response_error" class="alert alert-danger" style="display: none">Something
                                         went
-                                        wrong,can't add pacu
+                                        wrong,can't add user
                                     </div>
-                                    <div id="response_success" class="alert alert-success" style="display: none">Pacu
-                                        added
+                                    <div id="response_success" class="alert alert-success" style="display: none">User
+                                        updated
                                         successful
                                     </div>
                                     <div class="form-group">
-                                        <label for="patient">Patient</label>
-                                        <select class="form-control" id="patient">
+                                        <label for="names">Names</label>
+                                        <input type="text" class="form-control" id="names" placeholder="Names">
+                                        <div id="name-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone">Phone number</label>
+                                        <input type="number" class="form-control" id="phone" placeholder="Phone number">
+                                        <div id="phone-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Email address">
+                                        <div id="email-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userType">User type</label>
+                                        <select class="form-control" id="userType">
+                                            <option>Receptionist</option>
+                                            <option>Pharmacist</option>
+                                            <option>Operation manager</option>
+                                            <option>Surgeon</option>
+                                            <option>Nurse</option>
+                                            <option>Assistant</option>
+                                            <option>Anesthetist</option>
+                                            <option>Anesthesiologist</option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="operation">Operation</label>
-                                        <select class="form-control" id="operation">
-                                        </select>
-                                        <div id="operation-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exitDate">Exit date</label>
-                                        <input type="date" class="form-control" id="exitDate" placeholder="Exit date">
-                                        <div id="exitdate-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="destination">Destination </label>
-                                        <input type="text" class="form-control" id="destination"
-                                               placeholder="Destination">
-                                        <div id="destination-validation-error"></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="observation">Comment</label>
-                                        <textarea type="text" class="form-control" id="observation"
-                                                  placeholder="Observation" rows="3">
-                                        </textarea>
-                                        <div id="comment-validation-error"></div>
-
-
-                                    </div>
-                                    <button type="button" id="btnAddPacu" class="btn btn-primary me-2">Register</button>
-                                    <a href="pacu.html" class="btn btn-danger">Back</a>
+                                    <button type="button" id="btnUpdateUser" class="btn btn-primary me-2">Update</button>
+                                    <a href="users.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -225,36 +188,33 @@
 <script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 
+
 <script>
-    function validatePacu() {
-        const operation_validation = validateNumber($("#operation").val());
-        const exitdate_validation = $("#exitDate").val()!=='';
-        const destination_validation = validateText($("#destination").val().trim());
-        const comment_validation = validateText($("#observation").val().trim());
+    function validateUser() {
+        const name_validation = validateText($("#names").val());
+        const phone_validation = validatePhoneNumber($("#phone").val());
+        const email_validation = validateEmail($("#email").val());
+        if (!name_validation) $("#name-validation-error").html("<font color='red'>Invalid name</font>")
+        else $("#name-validation-error").html("");
 
-        if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
-        else $("#operation-validation-error").html("");
-        if (!exitdate_validation) $("#exitdate-validation-error").html("<font color='red'>Invalid exit date</font>");
-        else $("#exitdate-validation-error").html("");
-        if (!destination_validation) $("#destination-validation-error").html("<font color='red'>Invalid destination</font>");
-        else $("#destination-validation-error").html("");
-        if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
-        else $("#comment-validation-error").html("");
+        if (!phone_validation) $("#phone-validation-error").html("<font color='red'>Invalid phone number</font>")
+        else $("#phone-validation-error").html("");
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
+        if (!email_validation) $("#email-validation-error").html("<font color='red'>Invalid email address</font>")
+        else $("#email-validation-error").html("");
+        return name_validation && phone_validation && email_validation;
     }
 
-    function savePacu() {
-        const patient = $("#patient").val();
-        const operation = $("#operation").val();
-        const data = JSON.stringify({
-            exitDate: $("#exitDate").val(),
-            destination: $("#destination").val(),
-            observation: $("#observation").val()
+    function updateUser() {
+        var data = JSON.stringify({
+            name: $("#names").val(),
+            phone: $("#phone").val(),
+            email: $("#email").val(),
+            userType: $("#userType").val(),
         });
         $.ajax({
-            url: `api/pacu?patient=${patient}&operation=${operation}`,
-            method: 'POST',
+            url: `api/user/${getUrlQueryParamId()}`,
+            method: 'PUT',
             data: data,
             headers: {
                 'Content-Type': 'application/json',
@@ -264,9 +224,45 @@
             if (xhr.status === 200) {
                 $("#response_success").show();
                 $("#response_error").hide();
-                $("#exitDate").val("");
-                $("#destination").val("");
-                $("#observation").val("");
+            } else {
+                $("#response_success").hide();
+                $("#response_error").show();
+            }
+
+            setTimeout(function () {
+                $("#response_error").hide();
+                $("#response_success").hide();
+            }, 7000);
+        }).fail(function (xhr, status) {
+            console.log("Something went wrong")
+            console.log(xhr.status);
+            console.log(status);
+            $("#response_error").show();
+            $("#response_success").hide();
+            setTimeout(function () {
+                $("#response_error").hide();
+                $("#response_success").hide();
+            }, 7000);
+        });
+
+    }
+
+    function loadUserById(){
+        const id = getUrlQueryParamId();
+        if(id==null || !validateNumber(id)) window.location='users.html';
+        $.ajax({
+            url: `api/user/${id}`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        }).done(function (result, textStatus, xhr) {
+            console.log(xhr.status);
+            if (xhr.status === 200) {
+
+                $("#names").val(result.name);
+                $("#phone").val(result.phone);
+                $("#email").val(result.email);
             } else {
                 $("#response_success").hide();
                 $("#response_error").show();
@@ -283,49 +279,12 @@
         });
 
     }
-
-    function loadPatients() {
-        $.ajax({
-            url: "api/patients",
-            method: 'GET',
-            data: {},
-            dataType: 'json',
-            success: function (res) {
-                console.log(`Data len ${res.length}`);
-                var data = '';
-                for (var i = 0; i < res.length; i++) {
-                    data += `<option value=${res[i].id}>${res[i].patientNames}</option>`;
-                }
-                $("#patient").html(data)
-            }
-        })
-    }
-
-    function loadOperationByPatient(patient) {
-        $.ajax({
-            url: `api/operations/bypatient?patient=${patient}`,
-            method: 'GET',
-            data: {},
-            dataType: 'json',
-            success: function (res) {
-                console.log(`Data len ${res.length}`);
-                var data = '';
-                for (var i = 0; i < res.length; i++) {
-                    data += `<option value=${res[i].id}>${res[i].plannedProcedure}</option>`;
-                }
-                $("#operation").html(data)
-            }
-        })
-    }
-
-    $("#btnAddPacu").click(function () {
-        if (validatePacu())
-            savePacu();
+    $("#btnUpdateUser").click(function () {
+        if (validateUser())
+            updateUser();
     });
-    $("#patient").change(function () {
-        loadOperationByPatient($(this).val());
-    })
-    loadPatients();
+    loadUserById();
+
 </script>
 </body>
 

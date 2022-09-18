@@ -49,11 +49,14 @@
                                 <input type="password" class="form-control form-control-lg" id="password"
                                        placeholder="Password">
                             </div>
-                            <div class="mt-3">
-<!--                                <a href="forgot-password.html" class="auth-link text-black">Forgot password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
-                                <button type="button" id="btnLogin" class="btn btn-primary font-weight-medium pull-right">
-                                    SIGN IN
-                                </button>
+                            <div class="mt-3 pt-3">
+                                <!--                                <a href="forgot-password.html" class="auth-link text-black">Forgot password?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                <center>
+                                    <button type="button" id="btnLogin"
+                                            class="btn btn-primary font-weight-medium pull-right">
+                                        SIGN IN
+                                    </button>
+                                </center>
                             </div>
                             <div class="my-2 d-flex justify-content-between align-items-center">
                                 <div class="form-check">
@@ -82,6 +85,7 @@
 <script src="../../js/settings.js"></script>
 <script src="../../js/todolist.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- endinject -->
 </body>
 <script>
@@ -92,7 +96,7 @@
             data: {"email": $("#email").val(), "password": $("#password").val()},
             dataType: 'json',
             success: function (response) {
-                if (response.length >0) {
+                if (response.length > 0) {
                     result = response[0];
                     $("#response_success").show();
                     localStorage.setItem("surgerymis_user_id", result.id);
@@ -105,7 +109,7 @@
                     } else if (result.userType === "Receptionist") {
                         window.location = "/patients.html";
                     } else if (result.userType === "Pharmacist") {
-                        window.location = "/pharmacy-orders.html";
+                        window.location = "/pharmacy.html";
                     } else if (result.userType === "Operation manager") {
                         window.location = "/dashboard.html";
                     } else {
@@ -125,7 +129,15 @@
     }
 
     $("#btnLogin").click(function () {
-        login();
+        if (validateEmail($("#email").val())) {
+            if ($("#password").val() !== -1 && $("#password").val() != "") {
+                login();
+            } else {
+                alert("Password should not be empty");
+            }
+        } else {
+            alert("Invalid email address");
+        }
     })
 </script>
 </html>

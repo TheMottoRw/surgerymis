@@ -82,27 +82,27 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="dashboard.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-chart-bar menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="anesthesia.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-console-line menu-icon"></i>
                         <span class="menu-title">Anesthesia</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="operating-room.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-hospital-building menu-icon"></i>
                         <span class="menu-title">Operating room</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="operations.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-garage menu-icon"></i>
                         <span class="menu-title">Operations</span>
                     </a>
                 </li>
@@ -110,19 +110,19 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="pacu.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-bed-empty menu-icon"></i>
                         <span class="menu-title">Pacu</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="report.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-printer menu-icon"></i>
                         <span class="menu-title">Report</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -154,7 +154,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Operations Information Report data</h4>
-                                <div class="table-responsive">
+                                <div class="table-responsive" id="table-responsive">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <img src="images/logo-chuk.png" height="80" width="200"/><br>
+                                            <p><b>Name:</b>CHUK</p>
+                                            <p><b>Phone:</b>250 788 304 005</p>
+                                            <p><b>E-mail:</b>info@chuk.rw</p>
+                                        </div>
+                                        <div class="col-lg-8"></div>
+                                    </div>
                                     <table class="table" id="table-report">
                                         <thead>
                                         <tr>
@@ -279,8 +288,8 @@
         let pdf = new jsPDF('l', 'pt', [1720, 640]);
         // let pdf = new jsPDF('landscape', 'pt', "a2");
         pdf.page=1;
-        $("#table-report").style='margin-left:100px;';
-        pdf.html(document.getElementById("table-report"), {
+        $(".table-responsive").style='margin-left:100px;';
+        pdf.html(document.getElementById("table-responsive"), {
             callback: function (pdf) {
                 pdf.save(`Surgery MIS Report ${$("#operation_date_range").val().replaceAll("/","_").replaceAll("-","to")}.pdf`);
                 $("#table-report").removeAttr('style');
@@ -289,7 +298,7 @@
     }
 
     function gApiDownloadJs(){
-        html2canvas($('#table-report')[0], {
+        html2canvas($('#table-responsive')[0], {
             onrendered: function (canvas) {
                 var data = canvas.toDataURL();
                 var docDefinition = {
@@ -307,7 +316,12 @@
         filterOperationByDate();
     })
     $("#btnGenerateReport").click(function () {
-        gApiDownloadJs();
+        if(document.getElementById("operations-data").getElementsByTagName("tr").length>0){
+            gApiDownloadJs();
+        }else{
+            alert("No data to print");
+        }
+
     })
 </script>
 </body>

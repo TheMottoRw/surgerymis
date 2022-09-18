@@ -47,7 +47,8 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
             <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
@@ -78,19 +79,13 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" href="users.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-account-badge menu-icon"></i>
                         <span class="menu-title">Users</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pharmacy.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Pharmacy</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -120,19 +115,21 @@
                                     <div class="form-group">
                                         <label for="names">Names</label>
                                         <input type="text" class="form-control" id="names" placeholder="Names">
+                                        <div id="name-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="phone">Phone number</label>
                                         <input type="number" class="form-control" id="phone" placeholder="Phone number">
+                                        <div id="phone-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
                                         <input type="email" class="form-control" id="email" placeholder="Email address">
+                                        <div id="email-validation-error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label for="userType">User type</label>
                                         <select class="form-control" id="userType">
-                                            <option>Admin</option>
                                             <option>Receptionist</option>
                                             <option>Pharmacist</option>
                                             <option>Operation manager</option>
@@ -144,7 +141,7 @@
                                         </select>
                                     </div>
                                     <button type="button" id="btnAddUser" class="btn btn-primary me-2">Register</button>
-                                    <a href="users.html" class="btn btn-danger">Cancel</a>
+                                    <a href="users.html" class="btn btn-danger">Back</a>
                                 </form>
                             </div>
                         </div>
@@ -188,10 +185,26 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+<script src="helper/validators.js"></script>
 <!-- End custom js for this page-->
 
 
 <script>
+    function validateUser() {
+        const name_validation = validateText($("#names").val());
+        const phone_validation = validatePhoneNumber($("#phone").val());
+        const email_validation = validateEmail($("#email").val());
+        if (!name_validation) $("#name-validation-error").html("<font color='red'>Invalid name</font>")
+        else $("#name-validation-error").html("");
+
+        if (!phone_validation) $("#phone-validation-error").html("<font color='red'>Invalid phone number</font>")
+        else $("#phone-validation-error").html("");
+
+        if (!email_validation) $("#email-validation-error").html("<font color='red'>Invalid email address</font>")
+        else $("#email-validation-error").html("");
+        return name_validation && phone_validation && email_validation;
+    }
+
     function saveUser() {
         var data = JSON.stringify({
             name: $("#names").val(),
@@ -233,8 +246,8 @@
     }
 
     $("#btnAddUser").click(function () {
-        console.log("Button clicked")
-        saveUser();
+        if (validateUser())
+            saveUser();
     });
 
 

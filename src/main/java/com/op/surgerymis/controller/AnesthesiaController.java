@@ -32,6 +32,10 @@ public class AnesthesiaController {
     public List<Anesthesia> getAllAnesthesia() {
         return anesthesiaService.getAllAnesthesia();
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/api/anesthesia/{id}")
+    public Anesthesia getAnesthesiaById(@PathVariable String id) {
+        return anesthesiaService.getAnesthesiaById(id);
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/anesthesia")
     public void addAnesthesia(@RequestBody Anesthesia anesthesia, @RequestParam String patient, @RequestParam String operation,@RequestParam String anesthetist) {
@@ -43,5 +47,16 @@ public class AnesthesiaController {
         anesthesia.setOperation(operations);
         anesthesia.setAnesthetist(anesthetist0);
         anesthesiaService.addAnesthesia(anesthesia);
+    }
+    @RequestMapping(method = RequestMethod.PUT, value = "/api/anesthesia/{id}")
+    public void updateAnesthesia(@PathVariable String id,@RequestBody Anesthesia anesthesia, @RequestParam String patient, @RequestParam String operation,@RequestParam String anesthetist) {
+        anesthesia.setUpdatedAt(new Date());
+        Patients patients = patientsRepository.findById(Integer.parseInt(patient)).get();
+        Operations operations = operationsRepository.findById(Integer.parseInt(operation)).get();
+        Users anesthetist0 = usersRepository.findById(Integer.parseInt(anesthetist)).get();
+        anesthesia.setPatient(patients);
+        anesthesia.setOperation(operations);
+        anesthesia.setAnesthetist(anesthetist0);
+        anesthesiaService.updateAnesthesia(id,anesthesia);
     }
 }

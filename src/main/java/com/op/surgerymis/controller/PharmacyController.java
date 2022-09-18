@@ -21,14 +21,23 @@ public class PharmacyController {
     UsersRepository usersRepository;
 
     @RequestMapping("/api/pharmacy")
-    public List<Pharmacy> getAllPharmacy(){
+    public List<Pharmacy> getAllPharmacy() {
         return pharmacyService.getAllPharmacy();
     }
-    @RequestMapping(method = RequestMethod.POST,value = "/api/pharmacy")
-    public void addPharmacy(@RequestBody Pharmacy pharmacy, @RequestParam String representedBy){
+
+    @RequestMapping(method = RequestMethod.POST, value = "/api/pharmacy")
+    public void addPharmacy(@RequestBody Pharmacy pharmacy, @RequestParam String representedBy) {
         pharmacy.setCreatedAt(new Date());
         Users user = usersRepository.findById(Integer.parseInt(representedBy)).get();
         pharmacy.setRepresentedBy(user);
         pharmacyService.addPharmacy(pharmacy);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/api/pharmacy/{id}")
+    public void updatePharmacy(@PathVariable String id, @RequestBody Pharmacy pharmacy, @RequestParam String representedBy) {
+        pharmacy.setCreatedAt(new Date());
+        Users user = usersRepository.findById(Integer.parseInt(representedBy)).get();
+        pharmacy.setRepresentedBy(user);
+        pharmacyService.updatePharmacy(id, pharmacy);
     }
 }

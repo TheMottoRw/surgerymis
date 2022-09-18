@@ -77,14 +77,20 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link" href="pharmacy.html">
+                        <i class="mdi mdi-pharmacy menu-icon"></i>
+                        <span class="menu-title">Pharmacy</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="pharmacy-orders.html">
-                        <i class="mdi mdi-grid-large menu-icon"></i>
+                        <i class="mdi mdi-pill menu-icon"></i>
                         <span class="menu-title">Medicine Distribution</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.html">
-                        <i class="mdi mdi-grid-large icon-logout"></i>
+                        <i class="mdi mdi-logout menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
@@ -110,6 +116,7 @@
                                             <th>Kit</th>
                                             <th>Delivery</th>
                                             <th>Created</th>
+                                            <th>Action</th>
                                         </tr>
                                         </thead>
                                         <tbody id="pharmacy-orders-data">
@@ -179,6 +186,7 @@
                                     <td>${res[i].kit}</td>
                                     <td>${res[i].delivery}</td>
                                     <td>${res[i].createdAt !== null ? res[i].createdAt.replace('T', ' ').substring(0, 16) : "NA"}</td>
+                                    <td> <a href="update-pharmacy-order.html?id=${res[i].id}" class="btn btn-info btn-sm">Edit</a> </td>
                                 </tr>`;
                     }
                     $("#pharmacy-orders-data").html(data)
