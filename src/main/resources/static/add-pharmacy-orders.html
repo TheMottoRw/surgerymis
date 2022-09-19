@@ -192,11 +192,15 @@
     function validatePharmacyOrder() {
         const kit_validation = validateText($("#kit").val());
         const delivery_validation = validateText($("#delivery").val());
+        const patient_validation = validateNumber($("#patient").val());
+
         if (!kit_validation) $("#kit-validation-error").html("<font color='red'>Invalid kit information</font>");
         else $("#kit-validation-error").html("");
         if (!delivery_validation) $("#delivery-validation-error").html("<font color='red'>Invalid delivery information</font>");
         else $("#delivery-validation-error").html("");
-        return kit_validation && delivery_validation;
+        if (!patient_validation) $("#patient-validation-error").html("<font color='red'>Patient id invalid or not exist</font>");
+        else $("#patient-validation-error").html("");
+        return kit_validation && delivery_validation && patient_validation;
     }
 
     function saveOrder() {
@@ -270,7 +274,28 @@
             }
         })
     }
-
+    function searchPatient(){
+        $.ajax({
+            url: `api/patient/${$("#patient_id").val()}`,
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+            }
+        }).done(function (res) {
+            console.log(`Data len ${res.length}`);
+            var data = '';
+            $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+        }).fail(function(err){
+            $("#patient").html('');
+        })
+    }
+    $("#btnSearch").click(function () {
+        searchPatient();
+    });
     $("#btnAddOrder").click(function () {
         if (validatePharmacyOrder())
             saveOrder();

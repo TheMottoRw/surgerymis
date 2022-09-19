@@ -149,6 +149,12 @@
                                         successful
                                     </div>
                                     <div class="form-group">
+                                        <label for="patient_id">Patient ID</label>
+                                        <input type="text" class="form-control" id="patient_id"/>
+                                        <button type="button" class="btn btn-primary btn-sm mb-2" id="btnSearch">Search</button>
+                                        <div id="patient-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="patient">Patient</label>
                                         <select class="form-control" id="patient">
                                             <option>Admin</option>
@@ -248,6 +254,7 @@
         const assurance_validation = validateText($("#assurance").val());
         const accompanying_validation = validateText($("#accompanying").val());
         const observation_validation = validateText($("#observation").val());
+        const patient_validation = validateNumber($("#patient").val());
 
         if (!districthosp_validation) $("#districthosp-validation-error").html("<font color='red'>Invalid district hospital</font>");
         else $("#districthosp-validation-error").html("");
@@ -261,8 +268,10 @@
         else $("#accompanying-validation-error").html("");
         if (!observation_validation) $("#observation-validation-error").html("<font color='red'>Invalid observation</font>");
         else $("#observation-validation-error").html("");
+        if (!patient_validation) $("#patient-validation-error").html("<font color='red'>Patient id invalid or not exist</font>");
+        else $("#patient-validation-error").html("");
 
-        return districthosp_validation && preopdiag_validation && plannedprc_validation && assurance_validation && accompanying_validation && observation_validation;
+        return districthosp_validation && preopdiag_validation && plannedprc_validation && assurance_validation && accompanying_validation && observation_validation && patient_validation;
     }
 
     function saveOperation() {
@@ -333,12 +342,33 @@
             }
         })
     }
-
+    function searchPatient(){
+        $.ajax({
+            url: `api/patient/${$("#patient_id").val()}`,
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+            }
+        }).done(function (res) {
+            console.log(`Data len ${res.length}`);
+            var data = '';
+            $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+        }).fail(function(err){
+            $("#patient").html('');
+        })
+    }
+    $("#btnSearch").click(function () {
+        searchPatient();
+    });
     $("#btnAddOperation").click(function () {
         if (validateOperations())
             saveOperation();
     });
-    loadPatient();
+    // loadPatient();
 </script>
 </body>
 

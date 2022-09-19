@@ -149,6 +149,12 @@
                                         successful
                                     </div>
                                     <div class="form-group">
+                                        <label for="patient_id">Patient ID</label>
+                                        <input type="text" class="form-control" id="patient_id"/>
+                                        <button type="button" class="btn btn-primary btn-sm mb-2" id="btnSearch">Search</button>
+                                        <div id="patient-validation-error"></div>
+
+                                    </div>                                    <div class="form-group">
                                         <label for="patient">Patient</label>
                                         <select class="form-control" id="patient">
                                         </select>
@@ -275,6 +281,7 @@
         const cleaning_validation = validateText($("#cleaning").val().trim());
         const observation_validation = validateText($("#observation").val());
         const operation_validation = validateNumber($("#operation").val());
+        const patient_validation = validateNumber($("#patient").val());
 
         if (!intraopdiag_validation) $("#intraopdiag-validation-error").html("<font color='red'>Invalid intraoperation diagnostics</font>");
         else $("#intraopdiag-validation-error").html("");
@@ -290,8 +297,10 @@
         else $("#observation-validation-error").html("");
         if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
         else $("#operation-validation-error").html("");
+        if (!patient_validation) $("#patient-validation-error").html("<font color='red'>Patient id invalid or not exist</font>");
+        else $("#patient-validation-error").html("");
 
-        return intraopdiag_validation && opprocedure_validation && dressing_validation && out_validation && cleaning_validation && observation_validation && operation_validation;
+        return intraopdiag_validation && opprocedure_validation && dressing_validation && out_validation && cleaning_validation && observation_validation && operation_validation && patient_validation;
     }
 
     function saveOperatingRoom() {
@@ -416,7 +425,31 @@
         if (validateOperatingRoom())
             saveOperatingRoom();
     });
-    loadPatient();
+    function searchPatient(){
+        $.ajax({
+            url: `api/patient/${$("#patient_id").val()}`,
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`);
+                loadOperationByPatient(res.id);
+
+            }
+        }).done(function (res) {
+            console.log(`Data len ${res.length}`);
+            var data = '';
+            $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+        }).fail(function(err){
+            $("#patient").html('');
+        })
+    }
+    $("#btnSearch").click(function () {
+        searchPatient();
+    });
+    // loadPatient();
     loadSurgeon();
     loadNurses();
     $("#patient").change(function () {

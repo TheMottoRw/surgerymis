@@ -147,6 +147,12 @@
                                         successful
                                     </div>
                                     <div class="form-group">
+                                        <label for="patient_id">Patient ID</label>
+                                        <input type="text" class="form-control" id="patient_id"/>
+                                        <button type="button" class="btn btn-primary btn-sm mb-2" id="btnSearch">Search</button>
+                                        <div id="patient-validation-error"></div>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="patient">Patient</label>
                                         <select class="form-control" id="patient">
                                         </select>
@@ -231,6 +237,7 @@
         const exitdate_validation = $("#exitDate").val()!=='';
         const destination_validation = validateText($("#destination").val().trim());
         const comment_validation = validateText($("#observation").val().trim());
+        const patient_validation = validateNumber($("#patient").val());
 
         if (!operation_validation) $("#operation-validation-error").html("<font color='red'>Operation must not be empty</font>");
         else $("#operation-validation-error").html("");
@@ -240,8 +247,10 @@
         else $("#destination-validation-error").html("");
         if (!comment_validation) $("#comment-validation-error").html("<font color='red'>Comment must not be empty</font>");
         else $("#comment-validation-error").html("");
+        if (!patient_validation) $("#patient-validation-error").html("<font color='red'>Patient id invalid or not exist</font>");
+        else $("#patient-validation-error").html("");
 
-        return operation_validation && exitdate_validation && destination_validation && comment_validation;
+        return operation_validation && exitdate_validation && destination_validation && comment_validation && patient_validation;
     }
 
     function savePacu() {
@@ -317,6 +326,29 @@
             }
         })
     }
+    function searchPatient(){
+        $.ajax({
+            url: `api/patient/${$("#patient_id").val()}`,
+            method: 'GET',
+            data: {},
+            dataType: 'json',
+            success: function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`);
+                loadOperationByPatient(res.id);
+            }
+        }).done(function (res) {
+            console.log(`Data len ${res.length}`);
+            var data = '';
+            $("#patient").html(`<option value="${res.id}">${res.patientNames}</option>`)
+        }).fail(function(err){
+            $("#patient").html('');
+        })
+    }
+    $("#btnSearch").click(function () {
+        searchPatient();
+    });
 
     $("#btnAddPacu").click(function () {
         if (validatePacu())
@@ -325,7 +357,7 @@
     $("#patient").change(function () {
         loadOperationByPatient($(this).val());
     })
-    loadPatients();
+    // loadPatients();
 </script>
 </body>
 
