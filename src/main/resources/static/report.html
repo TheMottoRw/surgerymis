@@ -153,19 +153,21 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Operations Information Report data</h4>
                                 <div class="table-responsive" id="table-responsive">
                                     <div class="row">
                                         <div class="col-lg-4">
-                                            <img src="images/logo-chuk.png" height="80" width="200"/><br>
+                                            <img src="images/logo-chuk.png" height="80" width="200"/>
                                             <p><b>Name:</b>CHUK</p>
-                                            <p><b>Phone:</b>250 788 304 005</p>
+                                            <p><b>Phone:</b>250 788 304 005 </p>
                                             <p><b>E-mail:</b>info@chuk.rw</p>
                                         </div>
-                                        <div class="col-lg-8"></div>
+                                        <div class="col-lg-8"><br><br><br><br><br><br>
+                                            <h4 class="card-title">Operations Information Report</h4>
+                                            <p id="print-date" style="text-align: right;margin-right:100px;margin-top: -40px;">Print date:2022-09-12</p>
+                                        </div>
                                     </div>
                                     <table class="table" id="table-report">
-                                        <thead>
+                                        <thead id="thead-report">
                                         <tr>
                                             <th>No.</th>
                                             <th>Patient Name</th>
@@ -240,6 +242,7 @@
 <!-- End custom js for this page-->
 <script>
     $(document).ready(function () {
+        $("#print-date").html("<b>Print date: </b>"+new Date().toISOString().substring(0,10)+" "+new Date().toLocaleTimeString().substring(0,7));
         $(function () {
             $('input[name="operation_date_range"]').daterangepicker({
                 "startDate": new Date(),
@@ -298,6 +301,9 @@
     }
 
     function gApiDownloadJs(){
+        $("#print-date").html("<b>Print date:</b>"+new Date().toISOString().replaceAll("T"," ").substring(0,16));
+        $("#thead-report").attr("style","background-color: #1F3BB3;color:white");
+
         html2canvas($('#table-responsive')[0], {
             onrendered: function (canvas) {
                 var data = canvas.toDataURL();
@@ -310,6 +316,9 @@
                 pdfMake.createPdf(docDefinition).download(`Surgery MIS Report ${$("#operation_date_range").val().replaceAll("/","_").replaceAll("-","to")}.pdf`);
             }
         });
+        setTimeout(function(){
+            $("#thead-report").removeAttr("style");
+        },3000);
     }
 
     $("#btnFilter").click(function () {

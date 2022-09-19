@@ -2,6 +2,11 @@ function validateText(str){
     let pattern = /^[a-z0-9 ]+$/i;
     return pattern.test(str);
 }
+function validateAlphabets(str){
+    let pattern = /^[a-z ]+$/i;
+    return pattern.test(str);
+}
+
 
 function validatePhoneNumber(phone){
     let pattern = /^[0-9]{10,15}$/i;
