@@ -45,4 +45,8 @@ public class UserController {
         System.out.println(password);
         return userService.login(email,password);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/user/{id}")
+    public void deleteUser(@PathVariable String id){
+        userService.deleteUser(id);
+    }
 }

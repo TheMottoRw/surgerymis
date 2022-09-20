@@ -64,4 +64,8 @@ public class PharmacyOrdersController {
         orders.setNurse(nurses);
         ordersService.updatePharmacy(id,orders);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/order/{id}")
+    public void deleteOrder(@PathVariable String id){
+        ordersService.deletePharmacyOrder(id);
+    }
 }

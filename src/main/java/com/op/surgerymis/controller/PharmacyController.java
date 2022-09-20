@@ -40,4 +40,8 @@ public class PharmacyController {
         pharmacy.setRepresentedBy(user);
         pharmacyService.updatePharmacy(id, pharmacy);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/pharmacy/{id}")
+    public void deleteOPharmacy(@PathVariable String id){
+        pharmacyService.deletePharmacy(id);
+    }
 }

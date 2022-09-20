@@ -57,6 +57,11 @@ public class OperationsController {
         return operationsService.filterOperationByDate(start, end);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/operation/{id}")
+    public void deleteOrder(@PathVariable String id){
+        operationsService.deleteOperation(id);
+    }
+
     @RequestMapping("/api/dashboard")
     public DashboardDTO getDashboardStat() {
         return dashboardService.getDashboardStats();

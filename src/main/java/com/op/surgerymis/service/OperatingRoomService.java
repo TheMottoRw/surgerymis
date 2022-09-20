@@ -1,9 +1,6 @@
 package com.op.surgerymis.service;
 
-import com.op.surgerymis.models.OperatingRoom;
-import com.op.surgerymis.models.Operations;
-import com.op.surgerymis.models.Patients;
-import com.op.surgerymis.models.Pharmacy;
+import com.op.surgerymis.models.*;
 import com.op.surgerymis.repository.OperatingRoomRepository;
 import com.op.surgerymis.repository.PatientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ public class OperatingRoomService {
 
     public List<OperatingRoom> getAllOperatingRoom() {
         List<OperatingRoom> oproom = new ArrayList<>();
-        opRoomRepository.findAll().forEach(oproom::add);
+        opRoomRepository.findOperatingRoomByIsDeletedOrIsDeleted(false,null).forEach(oproom::add);
         return oproom;
     }
     public void addOperatingRoom(OperatingRoom anesthesia){
@@ -44,5 +41,11 @@ public class OperatingRoomService {
     }
     public OperatingRoom getOperatinRoomById(String id){
         return opRoomRepository.findById(Integer.parseInt(id)).get();
+    }
+    public void deleteOperatingRoom(String id){
+        OperatingRoom oproom = opRoomRepository.findById(Integer.parseInt(id)).get();
+        oproom.setDeleted(true);
+        oproom.setDeletedAt(new Date());
+        opRoomRepository.save(oproom);
     }
 }

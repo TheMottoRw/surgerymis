@@ -20,7 +20,7 @@ public class PatientService {
 
     public List<Patients> getAllPatients() {
         List<Patients> patients = new ArrayList<>();
-        patientsRepository.findAll().forEach(patients::add);
+        patientsRepository.findPatientsByIsDeletedOrIsDeleted(false,null).forEach(patients::add);
         return patients;
     }
     public Patients getPatientById(String id) {
@@ -29,11 +29,15 @@ public class PatientService {
         return patients;
     }
     public void addPatient(Patients patient){
+        List<Patients> lastPatient = new ArrayList<Patients>();
         SmsUtils smsUtils = new SmsUtils();
+        String patientId = null;
+
         patientsRepository.save(patient);
+        patientsRepository.findAll().forEach(lastPatient::add);
         //send sms
         try {
-            String message = "SURGERY MIS\nHello "+patient.getPatientNames()+",Information recorded successfully.";
+            String message = "SURGERY MIS\nHello "+patient.getPatientNames()+",Information recorded successfully.\nYour Patient ID is:"+lastPatient.get(lastPatient.size()-1).getId();
             smsUtils.send(patient.getPhone(),message);
         }catch (IOException ex){
             ex.printStackTrace();
@@ -47,6 +51,12 @@ public class PatientService {
         patient.setPhone(pat.getPhone());
         patient.setProvince(pat.getProvince());
         patient.setDistrict(pat.getDistrict());
+        patientsRepository.save(patient);
+    }
+    public void deletePatient(String id){
+        Patients patient = patientsRepository.findById(Integer.parseInt(id)).get();
+        patient.setDeleted(true);
+        patient.setDeletedAt(new Date());
         patientsRepository.save(patient);
     }
 }

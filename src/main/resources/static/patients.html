@@ -13,15 +13,17 @@
     <link rel="stylesheet" href="vendors/typicons/typicons.css">
     <link rel="stylesheet" href="vendors/simple-line-icons/css/simple-line-icons.css">
     <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-<!--    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">-->
+    <!--    <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">-->
     <link rel="stylesheet" href="js/select.dataTables.min.css">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="images/favicon.png"/>
 </head>
 <body>
 <div class="container-scroller">
@@ -39,7 +41,7 @@
                         <font color="black">Surger MIS</font></h4>
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="index.html">
-                    <img src="images/logo-mini.svg" alt="logo" />
+                    <img src="images/logo-mini.svg" alt="logo"/>
                 </a>
             </div>
         </div>
@@ -47,10 +49,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
                     <h1 class="welcome-text">Hello, <span class="text-black fw-bold"></span></h1>
-                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information system</h3>
+                    <h3 class="welcome-sub-text">Surgery pre operation and post operation management information
+                        system</h3>
                 </li>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-bs-toggle="offcanvas">
                 <span class="mdi mdi-menu"></span>
             </button>
         </div>
@@ -62,10 +66,12 @@
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                    <a class="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                    <a class="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section">CHATS</a>
                 </li>
             </ul>
         </div>
@@ -99,11 +105,20 @@
                                 <h4 class="card-title">Patients Information</h4>
                                 <a class="btn btn-primary btn-sm pull-right" href="add-patient.html">Add patient</a>
                                 <div class="table-responsive">
+                                    <div id="response_error" class="alert alert-danger" style="display: none">Something
+                                        went
+                                        wrong,can't delete patient
+                                    </div>
+                                    <div id="response_success" class="alert alert-success" style="display: none">
+                                        Patient deleted
+                                        successful
+                                    </div>
                                     <table class="table">
                                         <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Patient Name</th>
+                                            <th>Patient ID</th>
                                             <th>Phone</th>
                                             <th>Province</th>
                                             <th>District</th>
@@ -136,6 +151,29 @@
     <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
+<div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="deleteModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLongTitle">Confirm deleting patient</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="delete-id">
+                Are you sure you want to delete patient <strong><span id="delete-name"></span></strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="btnDelete" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 <!-- plugins:js -->
 <script src="vendors/js/vendor.bundle.base.js"></script>
@@ -158,6 +196,13 @@
 <script src="js/dashboard.js"></script>
 <script src="js/Chart.roundedBarCharts.js"></script>
 <script src="helper/utils.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 <!-- End custom js for this page-->
 <script>
     $(document).ready(function () {
@@ -174,19 +219,64 @@
                         data += `<tr>
                                     <td>${i + 1}</td>
                                     <td>${res[i].patientNames}</td>
+                                    <td>${res[i].id}</td>
                                     <td>${res[i].phone}</td>
                                     <td>${res[i].province}</td>
                                     <td>${res[i].district}</td>
-                                    <td>${res[i].dob!==null?res[i].dob.replace('T',' ').substring(0,16):"NA"}</td>
+                                    <td>${res[i].dob !== null ? res[i].dob.replace('T', ' ').substring(0, 16) : "NA"}</td>
                                     <td>${res[i].gender}</td>
-                                    <td>${res[i].createdAt!==null?res[i].createdAt.replace('T',' ').substring(0,16):"NA"}</td>
-                                    <td><a class="btn btn-info btn-sm" href="update-patient.html?id=${res[i].id}">Edit</a> </td>
+                                    <td>${res[i].createdAt !== null ? res[i].createdAt.replace('T', ' ').substring(0, 16) : "NA"}</td>
+                                    <td><a class="btn btn-info btn-sm" href="update-patient.html?id=${res[i].id}">Edit</a>
+                                    <button type="button" class="btn btn-danger btn-sm btnConfirmDelete" data-toggle="modal" data-target="#deleteModalCenter" data-id="${res[i].id}" data-name="${res[i].patientNames}">Delete</button></td>
                                 </tr>`;
                     }
                     $("#patients-data").html(data)
                 }
             })
         }
+
+        function setDeleteContent(id, name) {
+            $("#delete-name").html(name);
+            $("#delete-id").val(id);
+        }
+
+        function deletePatient() {
+            $.ajax({
+                url: `api/patient/${$("#delete-id").val()}`,
+                method: 'DELETE',
+                data: {},
+                dataType: 'json',
+            }).done(function (res) {
+                console.log(`Data len ${res.length}`);
+                var data = '';
+                $("#response_success").show();
+                $("#response_error").hide();
+                setTimeout(function () {
+                    $("#response_success").show();
+                    $("#response_error").hide();
+                }, 7000);
+                loadPatients();
+            }).fail(function () {
+                $("#response_success").show();
+                $("#response_error").hide();
+                setTimeout(function () {
+                    $("#response_success").hide();
+                    $("#response_error").show();
+                }, 7000);
+            });
+        }
+
+        $("#btnDelete").click(function () {
+            deletePatient();
+        });
+        window.addEventListener('click', function (e) {
+            console.log(e.target.classList);
+            if (e.target.classList.contains("btnConfirmDelete")) {
+                console.log(e.target.getAttribute("data-name"));
+                setDeleteContent(e.target.getAttribute("data-id"), e.target.getAttribute("data-name"))
+            }
+            console.log(e.target.getAttribute("data-name"));
+        })
 
         loadPatients();
     })

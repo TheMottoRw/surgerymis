@@ -2,6 +2,7 @@ package com.op.surgerymis.service;
 
 import com.op.surgerymis.models.Anesthesia;
 import com.op.surgerymis.models.Pharmacy;
+import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.AnesthesiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class AnesthesiaService {
 
     public List<Anesthesia> getAllAnesthesia() {
         List<Anesthesia> anesthesia = new ArrayList<>();
-        anesthesiaRepository.findAll().forEach(anesthesia::add);
+        anesthesiaRepository.findAnesthesiaByIsDeletedOrIsDeleted(false,null).forEach(anesthesia::add);
         return anesthesia;
     }
     public Anesthesia getAnesthesiaById(String id) {
@@ -37,6 +38,12 @@ public class AnesthesiaService {
         anesthesia.setInduction(anesth.getInduction());
         anesthesia.setOperativeDuration(anesth.getOperativeDuration());
         anesthesia.setAnesthesiaDuration(anesth.getAnesthesiaDuration());
+        anesthesiaRepository.save(anesthesia);
+    }
+    public void deleteAnesthesia(String id){
+        Anesthesia anesthesia = anesthesiaRepository.findById(Integer.parseInt(id)).get();
+        anesthesia.setDeleted(true);
+        anesthesia.setDeletedAt(new Date());
         anesthesiaRepository.save(anesthesia);
     }
 }
