@@ -4,6 +4,7 @@ import com.op.surgerymis.helpers.Utils;
 import com.op.surgerymis.models.Operations;
 import com.op.surgerymis.models.Patients;
 import com.op.surgerymis.models.Pharmacy;
+import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.OperationsRepository;
 import com.op.surgerymis.repository.PatientsRepository;
 import okhttp3.internal.Util;
@@ -25,7 +26,7 @@ public class OperationsService {
 
     public List<Operations> getAllOperations() {
         List<Operations> operations = new ArrayList<>();
-        operationsRepository.findAll().forEach(operations::add);
+        operationsRepository.findOperationsByIsDeletedOrIsDeleted(false,null).forEach(operations::add);
         return operations;
     }
     public Operations getOperationById(String id) {
@@ -58,5 +59,12 @@ public class OperationsService {
         System.out.println(dStart);
         System.out.println(dEnd);
         return operationsRepository.findOperationsByCreatedAtIsBetween(dStart,dEnd);
+    }
+
+    public void deleteOperation(String id){
+        Operations operations = operationsRepository.findById(Integer.parseInt(id)).get();
+        operations.setDeleted(true);
+        operations.setDeletedAt(new Date());
+        operationsRepository.save(operations);
     }
 }

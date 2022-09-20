@@ -10,4 +10,5 @@ public interface UsersRepository extends CrudRepository <Users,Integer> {
 
     List<Users> findByUserType(String userType);
     List<Users> findUsersByEmailAndPasswordAndUserTypeIn(String email,String password,List<String> userTypes);
+    List<Users> findUsersByIsDeletedOrIsDeleted(Boolean isDeleted,String nullval);
 }

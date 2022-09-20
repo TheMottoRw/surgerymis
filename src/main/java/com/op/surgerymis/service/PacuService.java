@@ -3,6 +3,7 @@ package com.op.surgerymis.service;
 import com.op.surgerymis.helpers.SmsUtils;
 import com.op.surgerymis.models.Pacu;
 import com.op.surgerymis.models.Patients;
+import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.PacuRepository;
 import org.hibernate.metamodel.model.convert.internal.JpaAttributeConverterImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,7 +22,7 @@ public class PacuService {
 
     public List<Pacu> getAllPacu() {
         List<Pacu> pacu = new ArrayList<>();
-        pacuRepository.findAll().forEach(pacu::add);
+        pacuRepository.findPacuByIsDeletedOrIsDeleted(false,null).forEach(pacu::add);
         return pacu;
     }
     public Pacu getPacuById(String id) {
@@ -46,5 +48,12 @@ public class PacuService {
        pacu.setDestination(pac.getDestination());
        pacu.setObservation(pac.getObservation());
        pacuRepository.save(pacu);
+    }
+
+    public void deletePacu(String id){
+        Pacu pacu = pacuRepository.findById(Integer.parseInt(id)).get();
+        pacu.setDeleted(true);
+        pacu.setDeletedAt(new Date());
+        pacuRepository.save(pacu);
     }
 }

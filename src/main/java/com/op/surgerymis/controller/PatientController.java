@@ -36,4 +36,9 @@ public class PatientController {
         patient.setUpdatedAt(new Date());
         patientService.updatePatient(id,patient);
     }
+
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/patient/{id}")
+    public void deletePatient(@PathVariable String id){
+        patientService.deletePatient(id);
+    }
 }

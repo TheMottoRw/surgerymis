@@ -2,6 +2,7 @@ package com.op.surgerymis.service;
 
 import com.op.surgerymis.models.Pharmacy;
 import com.op.surgerymis.models.PharmacyOrders;
+import com.op.surgerymis.models.Users;
 import com.op.surgerymis.repository.PharmacyOrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,12 @@ public class PharmacyOrdersService {
 
     public List<PharmacyOrders> getAllOrders() {
         List<PharmacyOrders> orders = new ArrayList<>();
-        pharmacyOrdersRepository.findAll().forEach(orders::add);
+        pharmacyOrdersRepository.getPharmacyOrdersByIsDeletedOrIsDeleted(false,null).forEach(orders::add);
         return orders;
     }
     public List<PharmacyOrders> getOrdersByPharmacy(Pharmacy pharmacy) {
         List<PharmacyOrders> orders = new ArrayList<>();
-        pharmacyOrdersRepository.getPharmacyOrdersByPharmacy(pharmacy).forEach(orders::add);
+        pharmacyOrdersRepository.getPharmacyOrdersByPharmacyAndIsDeletedOrIsDeletedAndPatientIsDeletedOrPatientIsDeletedAndNurseIsDeletedOrNurseIsDeleted(pharmacy,false,null,false,null,false,null).forEach(orders::add);
         return orders;
     }
     public PharmacyOrders getOrderById(String id) {
@@ -42,5 +43,12 @@ public class PharmacyOrdersService {
         pharmacy.setKit(orders.getKit());
         pharmacy.setDelivery(orders.getDelivery());
         pharmacyOrdersRepository.save(pharmacy);
+    }
+
+    public void deletePharmacyOrder(String id){
+        PharmacyOrders order = pharmacyOrdersRepository.findById(Integer.parseInt(id)).get();
+        order.setDeleted(true);
+        order.setDeletedAt(new Date());
+        pharmacyOrdersRepository.save(order);
     }
 }

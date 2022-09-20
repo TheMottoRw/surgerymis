@@ -64,4 +64,8 @@ public class OperatingRoomController {
         operatingRoom.setCreatedAt(new Date());
         operatingRoomService.updateOperatingRoom(id, operatingRoom);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/oproom/{id}")
+    public void deleteOpRoom(@PathVariable String id){
+        operatingRoomService.deleteOperatingRoom(id);
+    }
 }

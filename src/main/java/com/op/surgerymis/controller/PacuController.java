@@ -49,4 +49,8 @@ public class PacuController {
         pacu.setCreatedAt(new Date());
         pacuService.updatePacu(id,pacu);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/pacu/{id}")
+    public void deletePacu(@PathVariable String id){
+        pacuService.deletePacu(id);
+    }
 }

@@ -59,4 +59,8 @@ public class AnesthesiaController {
         anesthesia.setAnesthetist(anesthetist0);
         anesthesiaService.updateAnesthesia(id,anesthesia);
     }
+    @RequestMapping(method = RequestMethod.DELETE,value = "/api/anesthesia/{id}")
+    public void deleteAnesthesia(@PathVariable String id){
+        anesthesiaService.deleteAnesthesia(id);
+    }
 }

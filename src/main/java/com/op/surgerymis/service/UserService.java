@@ -21,7 +21,7 @@ public class UserService {
 
     public List<Users> getAllUsers() {
         List<Users> users = new ArrayList<>();
-        usersRepository.findAll().forEach(users::add);
+        usersRepository.findUsersByIsDeletedOrIsDeleted(false,null).forEach(users::add);
         return users;
     }
     public List<Users> getUserByType(String userType) {
@@ -66,6 +66,13 @@ public class UserService {
             }
         }
         return users;
+    }
+
+    public void deleteUser(String id){
+        Users user = usersRepository.findById(Integer.parseInt(id)).get();
+        user.setDeleted(true);
+        user.setDeletedAt(new Date());
+        usersRepository.save(user);
     }
 
 }
